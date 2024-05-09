@@ -1,7 +1,33 @@
+import { Link, NavLink } from "react-router-dom";
+import logo from '../../assets/logo.png'
 const Navbar = () => {
+    const navlinks=<>
+    
+    <NavLink className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-black font-bold text-xl"
+            : "p-2 rounded-md text-xl"
+        } to='/'>Home</NavLink>
+       
+    <NavLink className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-black font-bold text-xl"
+            : "p-2 rounded-md text-xl"
+        } to='/assignment'>Assignment</NavLink>
+    <NavLink className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-black font-bold text-xl"
+            : "p-2 rounded-md text-xl"
+        } to='/create-assignment'>Create Assignments</NavLink>
+    <NavLink className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-black font-bold text-xl"
+            : "p-2 rounded-md text-xl"
+        } to='/pending-assignment'>Pending Assignments</NavLink>
+    </>
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
+    <div className="navbar bg-[#024950] text-white flex justify-between px-10">
+      <div className="">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -23,52 +49,30 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+           {navlinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <div className="flex  items-center gap-3">
+            <img src={logo} className="w-20" alt="logo" />
+            <h2 className="text-4xl">Group Guru</h2>
+
+        </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 items-center gap-3">
+            {navlinks}
+          </ul>
+        </div>
+        <div className="ml-10">
+            
+         <NavLink to='/login'  className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-black font-bold text-xl"
+            : "p-2 rounded-md text-xl"
+        } >Login</NavLink>
+         <NavLink className="btn rounded-full">SignUp</NavLink>
+        </div>
       </div>
     </div>
   );
