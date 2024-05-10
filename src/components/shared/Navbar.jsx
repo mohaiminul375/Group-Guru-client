@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import logo from '../../assets/logo.png'
 const Navbar = () => {
     const navlinks=<>
@@ -68,10 +68,11 @@ const Navbar = () => {
             
          <NavLink to='/login'  className={({ isActive }) =>
           isActive
-            ? "border-b-2 border-black font-bold text-xl"
-            : "p-2 rounded-md text-xl"
+            ? "border-b-2 border-white font-bold text-xl mr-2"
+            : "p-2 rounded-md text-xl mr-2"
         } >Login</NavLink>
          <NavLink className="btn rounded-full">SignUp</NavLink>
+         
         </div>
       </div>
     </div>
