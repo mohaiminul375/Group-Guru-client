@@ -9,6 +9,8 @@
 - daisy ui
 - Meraki ui
 - react icon
+- react-spinners
+- react date picker
 
 # Auth
 - firebase (Auth and host)

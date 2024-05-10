@@ -27,6 +27,7 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         console.log(result.user);
+        
       })
       .catch((error) => {
         console.log(error);

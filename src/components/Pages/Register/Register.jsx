@@ -6,7 +6,7 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser,updateUserProfile,setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
@@ -31,6 +31,8 @@ const Register = () => {
     try{
      const result= await createUser(email,password)
      console.log(result.user)
+     updateUserProfile(userName,photoURL)
+     setUser({ ...result?.user, photoURL, displayName: userName })
        
     }
     catch(error){
