@@ -3,14 +3,25 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
+import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
+
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
 
   const onSubmit = (data) => {
     data.due_date = startDate;
     console.log(data);
+    axios.post('http://localhost:5000/all-assignment',data)
+    .then(data=>{
+        console.log(data.data)
+        if(data.data.insertedId){
+            toast.success('assignment created successfully')
+            reset()
+        }
+    })
   };
   return (
     <div className="mt-16 bg-[#024a5050] rounded-xl">
@@ -114,7 +125,7 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5">
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="text-base font-bold">User Email</span>
+                  <span className="text-base font-bold">Description</span>
                 </label>
                 <textarea
                   name=""
@@ -134,6 +145,7 @@ const CreateAssignment = () => {
             />
           </form>
         </div>
+        <Toaster/>
       </div>
     </div>
   );
