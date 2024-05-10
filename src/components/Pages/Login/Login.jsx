@@ -1,10 +1,40 @@
 import { Link } from "react-router-dom";
 import login from "../../../assets/login.jpg";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { FaCircleXmark } from "react-icons/fa6";
 
 const Login = () => {
-    const [showPassword,setShowPassword]=useState(false);
+  const { logIn } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    if (password.length < 6) {
+      setError("Password must be 6 character or more");
+      return;
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])/.test(password)) {
+      setError(
+        "Password must contain at least one uppercase letter and one lowercase letter."
+      );
+      return;
+    }
+    logIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleRemoveError = () => {
+    setError("");
+  };
   return (
     <div className="mt-16">
       <div className="flex justify-evenly items-center">
@@ -13,8 +43,14 @@ const Login = () => {
         </div>
         {/* login form */}
         <section className="bg-base-200 rounded-md h-full w-full md:w-[50%]">
+          {error && (
+            <p className="mt-5 text-center text-red-700 font-bold flex items-center justify-center gap-2">
+              {error}
+              <FaCircleXmark onClick={handleRemoveError} />
+            </p>
+          )}
           <div className="flex items-center justify-center  px-12 mx-auto w-full">
-            <form className="w-full">
+            <form onSubmit={handleLogIn} className="w-full">
               <h1 className="mt-3 text-2xl font-semibold capitalize sm:text-3xl text-black text-center">
                 Log In
               </h1>
@@ -41,6 +77,8 @@ const Login = () => {
                   type="email"
                   className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11   focus:border-[#024950] dark:focus:border-blue-300 focus:ring-[#024950] focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Email address"
+                  name="email"
+                  required
                 />
               </div>
 
@@ -63,15 +101,17 @@ const Login = () => {
                 </span>
 
                 <input
-                  type={showPassword?'text':'password'}
+                  type={showPassword ? "text" : "password"}
                   className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11   focus:border-[#024950] dark:focus:border-blue-300 focus:ring-[#024950] focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Password"
+                  name="password"
+                  required
                 />
-                <span onClick={()=>setShowPassword(!showPassword)} className="absolute right-2 text-xl">
-                    {
-                        showPassword? <FaRegEye />
-                        :<FaRegEyeSlash  />
-                    }
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2 text-xl"
+                >
+                  {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </div>
 
@@ -136,7 +176,15 @@ const Login = () => {
                 </a>
 
                 <div className="my-6 text-center ">
-                <p>Are you new here?<Link className="underline hover:text-[#024950]" to='/register'>Please Register</Link></p>
+                  <p>
+                    Are you new here?
+                    <Link
+                      className="underline hover:text-[#024950]"
+                      to="/register"
+                    >
+                      Please Register
+                    </Link>
+                  </p>
                 </div>
               </div>
             </form>
