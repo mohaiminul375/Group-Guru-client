@@ -5,5 +5,10 @@
 - vite
 - react
 - react router dom
+- tailwind css
 - daisy ui
+- Meraki ui
 - react icon
+
+# Auth
+- firebase (Auth and host)
