@@ -71,7 +71,10 @@ const Navbar = () => {
             ? "border-b-2 border-white font-bold text-xl mr-2"
             : "p-2 rounded-md text-xl mr-2"
         } >Login</NavLink>
-         <NavLink className="btn rounded-full">SignUp</NavLink>
+         <NavLink to='/register' className={({ isActive }) =>
+          isActive
+            ? "btn rounded-full border-black font-bold text-base mr-2"
+            : "btn rounded-full text-base mr-2"}>SignUp</NavLink>
          
         </div>
       </div>

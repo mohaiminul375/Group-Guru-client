@@ -6,3 +6,4 @@
 - react
 - react router dom
 - daisy ui
+- react icon

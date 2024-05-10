@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import login from "../../../assets/login.jpg";
+import { Link } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 
-const Login = () => {
+const Register = () => {
     const [showPassword,setShowPassword]=useState(false);
   return (
     <div className="mt-16">
@@ -11,14 +11,64 @@ const Login = () => {
         <div className="w-[40%] hidden md:flex">
           <img src={login} className="w-full" alt="" />
         </div>
-        {/* login form */}
+        {/* Sign Up form */}
         <section className="bg-base-200 rounded-md h-full w-full md:w-[50%]">
           <div className="flex items-center justify-center  px-12 mx-auto w-full">
             <form className="w-full">
               <h1 className="mt-3 text-2xl font-semibold capitalize sm:text-3xl text-black text-center">
-                Log In
+                Sign Up
               </h1>
+              {/* name */}
+              <div className="relative flex items-center mt-8">
+                <span className="absolute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </span>
 
+                <input
+                  type="text"
+                  className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11   focus:border-[#024950] dark:focus:border-blue-300 focus:ring-[#024950] focus:outline-none focus:ring focus:ring-opacity-40"
+                  placeholder="User Name"
+                />
+              </div>
+              {/* photo */}
+              <div className="relative flex items-center mt-8">
+                <span className="absolute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                    />
+                  </svg>
+                </span>
+
+                <input
+                  type="text"
+                  className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11   focus:border-[#024950] dark:focus:border-blue-300 focus:ring-[#024950] focus:outline-none focus:ring focus:ring-opacity-40"
+                  placeholder="Photo URL"
+                />
+              </div>
+              {/* email */}
               <div className="relative flex items-center mt-8">
                 <span className="absolute">
                   <svg
@@ -43,7 +93,7 @@ const Login = () => {
                   placeholder="Email address"
                 />
               </div>
-
+{/* password */}
               <div className="relative flex items-center mt-4">
                 <span className="absolute">
                   <svg
@@ -63,7 +113,7 @@ const Login = () => {
                 </span>
 
                 <input
-                  type={showPassword?'text':'password'}
+                  type={showPassword? 'text':'password'}
                   className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11   focus:border-[#024950] dark:focus:border-blue-300 focus:ring-[#024950] focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Password"
                 />
@@ -73,15 +123,17 @@ const Login = () => {
                         :<FaRegEyeSlash  />
                     }
                 </span>
+                
+
               </div>
 
               <div className="mt-6">
                 <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#024950] rounded-lg hover:bg-[#024a50c5] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  <Link>Login</Link>
+                  <Link>Sign Up</Link>
                 </button>
 
                 <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-                  or Login in with
+                  or Sign Up in with
                 </p>
 
                 <a
@@ -107,7 +159,7 @@ const Login = () => {
                     />
                   </svg>
 
-                  <span className="mx-2">Sign in with Google</span>
+                  <span className="mx-2">Sign Up with Google</span>
                 </a>
                 <a
                   href="#"
@@ -132,11 +184,19 @@ const Login = () => {
                     />
                   </svg>
 
-                  <span className="mx-2">Sign in with Facebook</span>
+                  <span className="mx-2">Sign Up with Facebook</span>
                 </a>
 
                 <div className="my-6 text-center ">
-                <p>Are you new here?<Link className="underline hover:text-[#024950]" to='/register'>Please Register</Link></p>
+                  <p>
+                    Already have an account?
+                    <Link
+                      className="underline hover:text-[#024950]"
+                      to="/login"
+                    >
+                      Please Login
+                    </Link>
+                  </p>
                 </div>
               </div>
             </form>
@@ -147,4 +207,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
