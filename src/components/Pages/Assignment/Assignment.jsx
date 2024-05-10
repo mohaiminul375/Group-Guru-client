@@ -20,7 +20,7 @@ const Assignment = () => {
         <h2 className="text-center text-4xl font-bold">All Assignment</h2>
         <p>See all assignment created by our Register User</p>
       </div>
-      <div className="grid md:grid-cols-3 gap-5">
+      <div className="mt-16 grid md:grid-cols-3 gap-5">
         {
             assignments.map(assignment=><AssignmentCard key={assignment._id} assignment={assignment}></AssignmentCard>)
         }

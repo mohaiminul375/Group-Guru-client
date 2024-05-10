@@ -6,6 +6,8 @@ import Register from "../components/Pages/Register/Register";
 import CreateAssignment from "../components/Pages/CreateAssignment/CreateAssignment";
 import PrivateRouter from "./PrivateRouter";
 import Assignment from "../components/Pages/Assignment/Assignment";
+import AssignmentDetails from "../components/Pages/AssignmentDetails/AssignmentDetails";
+import axios from "axios";
 
 export const router= createBrowserRouter([{
     path:'/',
@@ -29,6 +31,11 @@ export const router= createBrowserRouter([{
     {
         path:'/assignment',
         element:<Assignment></Assignment>
+    },
+    {
+        path:'/details/:id',
+        element:<AssignmentDetails></AssignmentDetails>,
+        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`)
     }
 
 ]
