@@ -9,31 +9,40 @@ import axios from "axios";
 
 const SubmitAssignment = ({ data }) => {
   console.log(data);
-  const {userEmail,
-    assignment_creator}=data;
-  const {user}=useContext(AuthContext);
-  const { register, handleSubmit,reset } = useForm();
-//   submission
-const onSubmit=async(submission)=>{
-    submission.status='pending'
-    console.log(submission)
-  const {data}=await  axios.post(`http://localhost:5000/submitted-assignment`,submission)
-  console.log('res from server',data)
-  if(data.insertedId){
-    toast.success('submitted successful')
-  }
+  const {
+    userEmail,
+    assignment_title,
+    assignment_marks,
 
-}
+    assignment_creator,
+  } = data;
+  const { user } = useContext(AuthContext);
+  const { register, handleSubmit, reset } = useForm();
+  //   submission
+  const onSubmit = async (submission) => {
+    submission.status = "pending";
+    submission.assignment_marks= assignment_marks;
 
+
+    console.log(submission);
+    const { data } = await axios.post(
+      `http://localhost:5000/submitted-assignment`,
+      submission
+    );
+    console.log("res from server", data);
+    if (data.insertedId) {
+      toast.success("submitted successful");
+    }
+  };
 
   return (
     <div className="modal-box w-full md:max-w-5xl">
-        <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button, it will close the modal */}
-              <button className="btn">Close</button>
-            </form>
-          </div>
+      <div className="modal-action">
+        <form method="dialog">
+          {/* if there is a button, it will close the modal */}
+          <button className="btn">Close</button>
+        </form>
+      </div>
       <h3 className="font-bold text-2xl text-center">Submit Assignment</h3>
       <div className="mt-5">
         <form
@@ -103,9 +112,27 @@ const onSubmit=async(submission)=>{
           </div>
           {/* row2 */}
           <div className="md:flex flex-row gap-5">
-            <div className="form-control md:w-full">
+            <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="text-base font-bold">Submit your assignment Pdf/doc Link</span>
+                <span className="text-base font-bold">
+                  Submit your assignment Pdf/doc Link
+                </span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder="enter assignment title"
+                required
+                readOnly
+                defaultValue={assignment_title}
+                {...register("assignment_title")}
+              />
+            </div>
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="text-base font-bold">
+                  Submit your assignment Pdf/doc Link
+                </span>
               </label>
               <input
                 type="text"
@@ -116,8 +143,7 @@ const onSubmit=async(submission)=>{
               />
             </div>
           </div>
-         
-       
+
           {/* row5 */}
           <div className="md:flex flex-row gap-5">
             <div className="form-control w-full">
@@ -142,8 +168,8 @@ const onSubmit=async(submission)=>{
           />
         </form>
       </div>
-      
-          <Toaster/>
+
+      <Toaster />
     </div>
   );
 };

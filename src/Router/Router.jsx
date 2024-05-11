@@ -8,6 +8,7 @@ import PrivateRouter from "./PrivateRouter";
 import Assignment from "../components/Pages/Assignment/Assignment";
 import AssignmentDetails from "../components/Pages/AssignmentDetails/AssignmentDetails";
 import axios from "axios";
+import MySubmission from "../components/Pages/MySubmission/MySubmission";
 
 export const router= createBrowserRouter([{
     path:'/',
@@ -36,6 +37,10 @@ export const router= createBrowserRouter([{
         path:'/details/:id',
         element:<PrivateRouter><AssignmentDetails></AssignmentDetails></PrivateRouter>,
         loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`)
+    },
+    {
+        path:'/my-submission',
+        element:<PrivateRouter><MySubmission></MySubmission></PrivateRouter>
     }
 
 ]
