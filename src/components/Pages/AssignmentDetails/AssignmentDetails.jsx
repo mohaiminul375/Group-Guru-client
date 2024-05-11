@@ -1,6 +1,8 @@
 // import React from 'react';
 
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
+import SubmitAssignment from "../SubmitAssignment/SubmitAssignment";
 
 const AssignmentDetails = () => {
   const { data } = useLoaderData();
@@ -15,11 +17,13 @@ const AssignmentDetails = () => {
     due_date,
   } = data;
 
-
-
+  const handleToast = () => {
+    console.log(click);
+    toast.success("success");
+  };
   return (
     <div className="mt-16">
-      <div className="border-2 border-[#024950] w-full md:max-w-5xl mx-auto p-8 rounded-md bg-base-200">
+      <div className="border-2 border-[#024950] w-full md:max-w-5xl mx-auto p-8 rounded-md bg-[#024a5050]">
         <h2 className="text-3xl font-bold text-[#024950]">
           {assignment_title}
         </h2>
@@ -44,11 +48,22 @@ const AssignmentDetails = () => {
               </h5>
             </div>
             <div className="mt-8 flex justify-end">
-          <Link className="bg-[#024950] p-3 rounded-full text-white">Take this assignment</Link>
+              <button
+                onClick={() =>
+                  document.getElementById("my_modal_4").showModal()
+                }
+                className="bg-[#024950] p-3 rounded-full text-white"
+              >
+                Take this assignment
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <dialog id="my_modal_4" className="modal">
+        {" "}
+        <SubmitAssignment></SubmitAssignment>
+      </dialog>
     </div>
   );
 };

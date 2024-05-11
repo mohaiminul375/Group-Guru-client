@@ -13,6 +13,7 @@
 - react date picker
 - axios
 - react hot toast
+- sweet alert 2
 
 # Auth
 - firebase (Auth and host)

@@ -2,11 +2,55 @@ import { BsPencilSquare } from "react-icons/bs";
 import { IoTrashOutline } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AssignmentCard = ({ assignment }) => {
+  const {user}=useContext(AuthContext);
   console.log(assignment);
-  const {_id, photo_url, assignment_title, difficulty_level, assignment_marks } =
+  const {_id, photo_url, assignment_title, difficulty_level, assignment_marks,
+    userEmail } =
     assignment;
+    // delete
+    const handleDeleteAssignment=(id)=>{
+      if(user?.email !== userEmail){
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You haven't access delete,Because you didn't create this assignment",
+        });
+      }
+
+      Swal.fire({
+        title: "Are you sure want to delete?",
+        text: "You will lost your data",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log('deleted',id)
+          axios.delete(`http://localhost:5000/all-assignment/${id}`)
+         .then(data=>{
+          console.log(data.data)
+          if(data.data.deletedCount){
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          }
+         })
+         
+        }
+      });
+      // 
+     
+    }
   return (
     <div className="max-w-lg p-4 shadow-md dark:bg-gray-50 dark:text-gray-800 rounded-md">
       <div className="space-y-4">
@@ -41,7 +85,7 @@ const AssignmentCard = ({ assignment }) => {
               className="cursor-pointer  hover:text-[#024950]"
             />
           </Link>
-          <button>
+          <button onClick={()=>handleDeleteAssignment(_id)}>
             <IoTrashOutline
               title="delete"
               className="cursor-pointer  hover:text-red-800"

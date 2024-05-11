@@ -50,7 +50,24 @@ const CreateAssignment = () => {
                   {...register("userEmail")}
                 />
               </div>
+             
               <div className="form-control md:w-1/2">
+                <label className="label">
+                  <span className="text-base font-bold">Assignment Creator</span>
+                </label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="enter your name"
+                  value={user?.displayName}
+                  required
+                  {...register("assignment_creator")}
+                />
+              </div>
+            </div>
+            {/* row2 */}
+            <div className="md:flex flex-row gap-5">
+            <div className="form-control md:w-1/2">
                 <label className="label">
                   <span className="text-base font-bold">Assignment Title</span>
                 </label>
@@ -62,9 +79,6 @@ const CreateAssignment = () => {
                   {...register("assignment_title")}
                 />
               </div>
-            </div>
-            {/* row2 */}
-            <div className="md:flex flex-row gap-5">
               <div className="form-control md:w-1/2">
                 <label className="label">
                   <span className="text-base font-bold">
@@ -82,6 +96,11 @@ const CreateAssignment = () => {
                   <option>Hard</option>
                 </select>
               </div>
+              
+            </div>
+            {/* row3 */}
+            <div className="md:flex flex-row gap-5">
+              
               <div className="form-control md:w-1/2">
                 <label className="label">
                   <span className="text-base font-bold">Assignment Marks</span>
@@ -92,21 +111,6 @@ const CreateAssignment = () => {
                   placeholder="you assignment marks"
                   {...register("assignment_marks")}
                   required
-                />
-              </div>
-            </div>
-            {/* row3 */}
-            <div className="md:flex flex-row gap-5">
-              <div className="form-control md:w-1/2">
-                <label className="label">
-                  <span className="text-base font-bold">Photo URL</span>
-                </label>
-                <input
-                  type="text"
-                  className="input input-bordered"
-                  placeholder="input your photo url"
-                  required
-                  {...register("photo_url")}
                 />
               </div>
               <div className="form-control md:w-1/2">
@@ -121,7 +125,23 @@ const CreateAssignment = () => {
                 />
               </div>
             </div>
-            {/* row4 */}
+            {/* row3 */}
+            <div className="md:flex flex-row gap-5">
+              
+            <div className="form-control w-full">
+                <label className="label">
+                  <span className="text-base font-bold">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="input your photo url"
+                  required
+                  {...register("photo_url")}
+                />
+              </div>
+            </div>
+            {/* row5 */}
             <div className="md:flex flex-row gap-5">
               <div className="form-control w-full">
                 <label className="label">
@@ -140,8 +160,8 @@ const CreateAssignment = () => {
             </div>
             <input
               type="submit"
-              value="create assignment"
-              className="w-full py-2 cursor-pointer border bg-[#024950] text-white rounded-md"
+              value="Create Assignment"
+              className="w-full text-xl py-2 cursor-pointer border bg-[#024950] text-white rounded-md"
             />
           </form>
         </div>

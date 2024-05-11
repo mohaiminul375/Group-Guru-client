@@ -34,7 +34,7 @@ export const router= createBrowserRouter([{
     },
     {
         path:'/details/:id',
-        element:<AssignmentDetails></AssignmentDetails>,
+        element:<PrivateRouter><AssignmentDetails></AssignmentDetails></PrivateRouter>,
         loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`)
     }
 
