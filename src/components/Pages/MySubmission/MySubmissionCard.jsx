@@ -4,7 +4,7 @@ const MySubmissionCard = ({ idx, submission }) => {
   const { assignment_title, assignment_marks, status, obtain_marks } =
     submission;
   return (
-    <tr className="border-2 border-[#024950]">
+    <tr className="border-2 border-[#024950] text-xl">
       <th>{idx + 1}</th>
       <td>{assignment_title}</td>
       <td>{status}</td>

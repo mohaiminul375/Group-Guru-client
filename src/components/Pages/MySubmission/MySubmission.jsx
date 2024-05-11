@@ -21,10 +21,10 @@ const MySubmission = () => {
       </div>
       <div className="mt-16">
         <div className="overflow-x-auto">
-          <table className="table border-2 border-[#024950]">
+          <table className="table border-2 border-[#024950] text-center">
             {/* head */}
             <thead className="border-2 border-[#024950]">
-              <tr className="border-2 border-[#024950]">
+              <tr className="border-2 border-[#024950] text-xl font-bold text-[#024950]">
                 <th>SL</th>
                 <th>Assignment Title</th>
                 <th>Status</th>
