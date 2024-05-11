@@ -1,22 +1,140 @@
 // import React from 'react';
 
-const SubmitAssignment = () => {
-    return (
-        
-        <div className="modal-box w-11/12 max-w-5xl">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Click the button below to close</p>
-          <button  className="">Toast</button>
-          <div className="modal-action">
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { useForm } from "react-hook-form";
+
+const SubmitAssignment = ({ data }) => {
+  console.log(data);
+  const {userEmail,
+    assignment_creator}=data;
+  const {user}=useContext(AuthContext);
+  const { register, handleSubmit,reset } = useForm();
+//   submission
+const onSubmit=(data)=>{
+    data.status='pending'
+    console.log(data)
+}
+
+
+  return (
+    <div className="modal-box w-full md:max-w-5xl">
+      <h3 className="font-bold text-2xl text-center">Submit Assignment</h3>
+      <div className="mt-5">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full p-8 space-y-4"
+        >
+          {/* row1 */}
+          <div className="md:flex flex-row gap-5 ">
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="text-base font-bold">Creator Email</span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder=""
+                required
+                value={userEmail}
+                readOnly
+                {...register("userEmail")}
+              />
+            </div>
+
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="text-base font-bold">Assignment Creator</span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder="enter your name"
+                value={assignment_creator}
+                required
+                {...register("assignment_creator")}
+              />
+            </div>
+          </div>
+          <div className="md:flex flex-row gap-5 ">
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="text-base font-bold">Examinee Email</span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder="enter your email"
+                required
+                value={user?.email}
+                readOnly
+                {...register("examinee_email")}
+              />
+            </div>
+
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="text-base font-bold">Examinee Name</span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder="enter your name"
+                value={user?.displayName}
+                required
+                {...register("examinee_name")}
+              />
+            </div>
+          </div>
+          {/* row2 */}
+          <div className="md:flex flex-row gap-5">
+            <div className="form-control md:w-full">
+              <label className="label">
+                <span className="text-base font-bold">Submit your assignment Pdf/doc Link</span>
+              </label>
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder="enter assignment title"
+                required
+                {...register("assignment_submission")}
+              />
+            </div>
+          </div>
+         
+       
+          {/* row5 */}
+          <div className="md:flex flex-row gap-5">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="text-base font-bold">Add a quick note</span>
+              </label>
+              <textarea
+                name=""
+                id=""
+                rows={5}
+                placeholder="input quick note "
+                className="rounded-md p-8"
+                required
+                {...register("quick_note")}
+              ></textarea>
+            </div>
+          </div>
+          <input
+            type="submit"
+            value="Submit"
+            className="w-full text-xl py-2 cursor-pointer border bg-[#024950] text-white rounded-md"
+          />
+        </form>
+      </div>
+      {/* <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button, it will close the modal */}
+              if there is a button, it will close the modal
               <button className="btn">Close</button>
             </form>
-          </div>
-        </div>
-       
-      
-    );
+          </div> */}
+    </div>
+  );
 };
 
 export default SubmitAssignment;

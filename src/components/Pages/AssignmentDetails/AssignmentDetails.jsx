@@ -1,12 +1,12 @@
 // import React from 'react';
 
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import SubmitAssignment from "../SubmitAssignment/SubmitAssignment";
 
 const AssignmentDetails = () => {
   const { data } = useLoaderData();
-  console.log(data);
+  // console.log(data);
   const {
     assignment_title,
     userEmail,
@@ -17,10 +17,7 @@ const AssignmentDetails = () => {
     due_date,
   } = data;
 
-  const handleToast = () => {
-    console.log(click);
-    toast.success("success");
-  };
+
   return (
     <div className="mt-16">
       <div className="border-2 border-[#024950] w-full md:max-w-5xl mx-auto p-8 rounded-md bg-[#024a5050]">
@@ -62,7 +59,7 @@ const AssignmentDetails = () => {
       </div>
       <dialog id="my_modal_4" className="modal">
         {" "}
-        <SubmitAssignment></SubmitAssignment>
+        <SubmitAssignment data={data}></SubmitAssignment>
       </dialog>
     </div>
   );
