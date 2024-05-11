@@ -17,18 +17,18 @@ const MySubmission = () => {
   return (
     <div className="mt-16">
       <div className="text-center">
-        <h2 className="text-4xl">My Submission</h2>
+        <h2 className="text-4xl font-bold font-Jaini">My Submission</h2>
       </div>
       <div className="mt-16">
         <div className="overflow-x-auto">
           <table className="table border-2 border-[#024950] text-center">
             {/* head */}
             <thead className="border-2 border-[#024950]">
-              <tr className="border-2 border-[#024950] text-xl font-bold text-[#024950]">
+              <tr className="border-2 border-[#024950] text-base md:text-xl font-bold text-[#024950]">
                 <th>SL</th>
                 <th>Assignment Title</th>
                 <th>Status</th>
-                <th>Obtain Mark/Assignment Marks</th>
+                <th>Obtain Mark/<br></br>Assignment Marks</th>
                 <th>Action</th>
               </tr>
             </thead>

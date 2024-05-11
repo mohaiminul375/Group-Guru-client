@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../../assets/login.jpg";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { logIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const location=useLocation();
+  const navigate=useNavigate();
+  const from= location.state || '/';
   const handleLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,6 +31,10 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success('login successfully');
+        setTimeout(()=>{
+          navigate(from)
+        },1000)
         
       })
       .catch((error) => {
@@ -191,6 +199,7 @@ const Login = () => {
             </form>
           </div>
         </section>
+        <Toaster/>
       </div>
     </div>
   );

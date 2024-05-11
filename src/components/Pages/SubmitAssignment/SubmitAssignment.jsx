@@ -1,5 +1,5 @@
 // import React from 'react';
-
+import { FaCircleXmark } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
@@ -40,7 +40,7 @@ const SubmitAssignment = ({ data }) => {
       <div className="modal-action">
         <form method="dialog">
           {/* if there is a button, it will close the modal */}
-          <button className="btn">Close</button>
+          <button className="rounded-full text-[#024950]  tooltip tooltip-bottom" data-tip='close'><FaCircleXmark className="text-4xl "/></button>
         </form>
       </div>
       <h3 className="font-bold text-2xl text-center">Submit Assignment</h3>

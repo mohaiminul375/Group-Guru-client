@@ -17,8 +17,8 @@ const Assignment = () => {
   return (
     <div className="mt-16">
       <div className="text-center">
-        <h2 className="text-center text-4xl font-bold">All Assignment</h2>
-        <p>See all assignment created by our Register User</p>
+        <h2 className="text-center text-4xl font-bold font-Jaini">All Assignment</h2>
+        <p className="text-lg">See all assignment created by our Register User</p>
       </div>
       <div className="mt-16 grid md:grid-cols-3 gap-5">
         {

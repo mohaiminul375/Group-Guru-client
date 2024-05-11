@@ -26,7 +26,7 @@ const CreateAssignment = () => {
   return (
     <div className="mt-16 bg-[#024a5050] rounded-xl">
       <div className="border-2 rounded-xl">
-        <h2 className="text-3xl text-center font-bold">
+        <h2 className="text-3xl text-center font-bold mt-5 font-Jaini">
           Create Your Assignment
         </h2>
         <div>

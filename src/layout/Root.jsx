@@ -4,7 +4,7 @@ import Navbar from '../components/shared/Navbar';
 
 const Root = () => {
     return (
-        <div>
+        <div className='font-Zilla-Slab'>
             <Navbar></Navbar>
             <div className='md:max-w-6xl mx-auto'>
             <Outlet></Outlet>

@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        'Zilla-Slab':'"Zilla Slab", serif',
+        'Jaini':'"Jaini", system-ui',
+        'shadows-light':'"Shadows Into Light", cursive',
+        
+
+
+      }
+    },
   },
   plugins: [
     require('daisyui')

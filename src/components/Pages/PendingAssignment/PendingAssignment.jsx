@@ -15,9 +15,14 @@ const PendingAssignment = () => {
   }, []);
   return (
     <div className="mt-16">
-      <div className="text-center text-4xl font-bold">
+      <div className="text-center text-4xl font-bold font-Jaini">
         <h2>ALL Pending Assignment</h2>
       </div>
+      {
+        pendingAssignment.length==0 && <div>
+          <h2 className="text-4xl text-center my-5 text-[#024950]">No Pending Assignment right now</h2>
+        </div>
+      }
       <div className="mt-16">
         <div className="overflow-x-auto">
           <table className="table">
@@ -34,6 +39,7 @@ const PendingAssignment = () => {
             </thead>
             <tbody>
               {/* row 1 */}
+             
              {
                 pendingAssignment.map((assignment,idx)=><PendingAssignmentTable key={assignment._id} idx={idx} 
                 assignment={assignment}

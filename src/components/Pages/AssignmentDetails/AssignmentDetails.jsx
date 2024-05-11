@@ -27,7 +27,7 @@ const AssignmentDetails = () => {
         <h5 className="text-base font-bold">
           Created By: <span>{userEmail}</span>
         </h5>
-        <div className="flex justify-between">
+        <div className="flex flex-col md:flex-row md:justify-between">
           <div className="md:w-1/2">
             <img className="mt-8" src={photo_url} alt="" />
             <p className="text-xl mt-4">{assignment_description}</p>

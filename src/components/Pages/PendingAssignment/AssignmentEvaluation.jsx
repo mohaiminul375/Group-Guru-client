@@ -1,19 +1,25 @@
 // import React from "react";
 
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { FaCircleXmark } from "react-icons/fa6";
 
 const AssignmentEvaluation = ({ assignment }) => {
+  const {user}=useContext(AuthContext);
   const {_id, userEmail, examinee_name, assignment_submission, quick_note,assignment_title,assignment_marks,examinee_email,
   } =
     assignment;
+    console.log(user?.email,examinee_email)
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (postMark) => {
     postMark.status='completed'
     console.log(postMark)
-    if (userEmail == examinee_email) {
-      return;
+    if (user?.email == examinee_email) {
+      return toast.error("examinee can't evaluate an assignment")
     }
     axios.patch(`http://localhost:5000/submitted-assignment/${_id}`,postMark)
     .then(data=>{
@@ -23,6 +29,12 @@ const AssignmentEvaluation = ({ assignment }) => {
 
   return (
     <div className="modal-box w-full md:max-w-5xl">
+        <div className="modal-action">
+        <form method="dialog">
+          {/* if there is a button, it will close the modal */}
+          <button className="rounded-full text-[#024950]  tooltip tooltip-bottom" data-tip='close'><FaCircleXmark className="text-4xl "/></button>
+        </form>
+      </div>
       <div className="flex justify-between">
         <div className="md:w-1/2">
           <div className="font-bold">
@@ -85,12 +97,8 @@ const AssignmentEvaluation = ({ assignment }) => {
           </div>
         </form>
       </div>
-      <div className="modal-action">
-        <form method="dialog">
-          {/* if there is a button, it will close the modal */}
-          <button className="btn">Close</button>
-        </form>
-      </div>
+    
+      <Toaster/>
     </div>
   );
 };

@@ -52,7 +52,7 @@ const AssignmentCard = ({ assignment }) => {
      
     }
   return (
-    <div className="max-w-lg p-4 shadow-md dark:bg-gray-50 dark:text-gray-800 rounded-md">
+    <div className="w-full md:max-w-lg p-4 shadow-md bg-gray-50 rounded-md">
       <div className="space-y-4">
         <div className="space-y-2">
           <img

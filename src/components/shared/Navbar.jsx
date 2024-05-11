@@ -10,8 +10,8 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "border-b-2 border-black font-bold text-xl"
-            : "p-2 rounded-md text-xl"
+            ? "border-b-2 border-black font-bold text-base"
+            : "p-2 rounded-md text-base"
         }
         to="/"
       >
@@ -21,8 +21,8 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "border-b-2 border-black font-bold text-xl"
-            : "p-2 rounded-md text-xl"
+            ? "border-b-2 border-black font-bold text-base"
+            : "p-2 rounded-md text-base"
         }
         to="/assignment"
       >
@@ -31,8 +31,8 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "border-b-2 border-black font-bold text-xl"
-            : "p-2 rounded-md text-xl"
+            ? "border-b-2 border-black font-bold text-base"
+            : "p-2 rounded-md text-base"
         }
         to="/create-assignment"
       >
@@ -41,8 +41,8 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "border-b-2 border-black font-bold text-xl"
-            : "p-2 rounded-md text-xl"
+            ? "border-b-2 border-black font-bold text-base"
+            : "p-2 rounded-md text-base"
         }
         to="/pending-assignment"
       >
@@ -51,7 +51,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#024950] text-white flex justify-between px-10">
+    <div className="navbar bg-[#024950] text-white flex justify-between md:px-10">
       <div className="">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -78,8 +78,8 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex  items-center gap-3">
-          <img src={logo} className="w-20" alt="logo" />
-          <h2 className="text-4xl">Group Guru</h2>
+          <img src={logo} className="w-10 md:w-20" alt="logo" />
+          <h2 className="text-4xl font-Jaini font-bold">G<span className="text-xs font-Zilla-Slab">roup Guru</span></h2>
         </div>
       </div>
       <div>
