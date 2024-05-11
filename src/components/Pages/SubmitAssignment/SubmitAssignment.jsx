@@ -43,7 +43,7 @@ const SubmitAssignment = ({ data }) => {
           <button className="rounded-full text-[#024950]  tooltip tooltip-bottom" data-tip='close'><FaCircleXmark className="text-4xl "/></button>
         </form>
       </div>
-      <h3 className="font-bold text-2xl text-center">Submit Assignment</h3>
+      <h3 className="font-bold text-2xl text-center font-Jaini">Submit Assignment</h3>
       <div className="mt-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -115,7 +115,7 @@ const SubmitAssignment = ({ data }) => {
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="text-base font-bold">
-                  Submit your assignment Pdf/doc Link
+                  Assignment Title
                 </span>
               </label>
               <input

@@ -35,14 +35,14 @@ const AssignmentEvaluation = ({ assignment }) => {
           <button className="rounded-full text-[#024950]  tooltip tooltip-bottom" data-tip='close'><FaCircleXmark className="text-4xl "/></button>
         </form>
       </div>
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row justify-between">
         <div className="md:w-1/2">
           <div className="font-bold">
             <h2 className="text-xl font-bold text-[#024950]">Assignment_info</h2>
             <p className="text-base">{assignment_title}</p>
-            <p className="text-base">{assignment_marks}</p>
+            <p className="text-base">Mark: {assignment_marks}</p>
           </div>
-          <div>
+          <div className="mt-3">
             <h2 className="text-xl font-bold text-[#024950]">Examinee_info</h2>
             <p className="text-base">{examinee_name}</p>
             <p className="text-base">{userEmail}</p>

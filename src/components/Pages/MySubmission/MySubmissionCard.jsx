@@ -17,9 +17,9 @@ const MySubmissionCard = ({ idx, submission }) => {
         <button
           onClick={() => document.getElementById("my_modal_4").showModal()}
           disabled={status == "pending"}
-          className="p-2 bg-[#024950] text-white rounded-full disabled:cursor-not-allowed text-xs"
+          className="p-2 bg-[#024950] text-white rounded-full disabled:cursor-not-allowed text-xs md:text-base"
         >
-          See feed back
+          See feedback
         </button>
       </td>
       <dialog id="my_modal_4" className="modal">
