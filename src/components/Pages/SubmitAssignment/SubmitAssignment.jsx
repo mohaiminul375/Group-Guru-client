@@ -1,8 +1,11 @@
 // import React from 'react';
 
+import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+// import toast from "react-hot-toast";
 
 const SubmitAssignment = ({ data }) => {
   console.log(data);
@@ -11,14 +14,26 @@ const SubmitAssignment = ({ data }) => {
   const {user}=useContext(AuthContext);
   const { register, handleSubmit,reset } = useForm();
 //   submission
-const onSubmit=(data)=>{
-    data.status='pending'
-    console.log(data)
+const onSubmit=async(submission)=>{
+    submission.status='pending'
+    console.log(submission)
+  const {data}=await  axios.post(`http://localhost:5000/submitted-assignment`,submission)
+  console.log('res from server',data)
+  if(data.insertedId){
+    toast.success('submitted successful')
+  }
+
 }
 
 
   return (
     <div className="modal-box w-full md:max-w-5xl">
+        <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
       <h3 className="font-bold text-2xl text-center">Submit Assignment</h3>
       <div className="mt-5">
         <form
@@ -127,12 +142,8 @@ const onSubmit=(data)=>{
           />
         </form>
       </div>
-      {/* <div className="modal-action">
-            <form method="dialog">
-              if there is a button, it will close the modal
-              <button className="btn">Close</button>
-            </form>
-          </div> */}
+      
+          <Toaster/>
     </div>
   );
 };
