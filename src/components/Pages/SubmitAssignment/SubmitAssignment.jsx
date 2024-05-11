@@ -21,8 +21,7 @@ const SubmitAssignment = ({ data }) => {
   //   submission
   const onSubmit = async (submission) => {
     submission.status = "pending";
-    submission.assignment_marks= assignment_marks;
-
+    submission.assignment_marks = assignment_marks;
 
     console.log(submission);
     const { data } = await axios.post(
@@ -31,6 +30,7 @@ const SubmitAssignment = ({ data }) => {
     );
     console.log("res from server", data);
     if (data.insertedId) {
+      reset();
       toast.success("submitted successful");
     }
   };
@@ -40,10 +40,17 @@ const SubmitAssignment = ({ data }) => {
       <div className="modal-action">
         <form method="dialog">
           {/* if there is a button, it will close the modal */}
-          <button className="rounded-full text-[#024950]  tooltip tooltip-bottom" data-tip='close'><FaCircleXmark className="text-4xl "/></button>
+          <button
+            className="rounded-full text-[#024950]  tooltip tooltip-bottom"
+            data-tip="close"
+          >
+            <FaCircleXmark className="text-4xl " />
+          </button>
         </form>
       </div>
-      <h3 className="font-bold text-2xl text-center font-Jaini">Submit Assignment</h3>
+      <h3 className="font-bold text-2xl text-center font-Jaini">
+        Submit Assignment
+      </h3>
       <div className="mt-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -114,9 +121,7 @@ const SubmitAssignment = ({ data }) => {
           <div className="md:flex flex-row gap-5">
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="text-base font-bold">
-                  Assignment Title
-                </span>
+                <span className="text-base font-bold">Assignment Title</span>
               </label>
               <input
                 type="text"
@@ -137,7 +142,7 @@ const SubmitAssignment = ({ data }) => {
               <input
                 type="text"
                 className="input input-bordered"
-                placeholder="enter assignment title"
+                placeholder="enter assignment link"
                 required
                 {...register("assignment_submission")}
               />
@@ -169,7 +174,7 @@ const SubmitAssignment = ({ data }) => {
         </form>
       </div>
 
-      <Toaster />
+      <Toaster position="bottom-left" reverseOrder={false} />
     </div>
   );
 };

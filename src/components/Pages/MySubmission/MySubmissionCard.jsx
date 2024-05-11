@@ -3,7 +3,7 @@ import MySubmissionModal from "./MySubmissionModal";
 const MySubmissionCard = ({ idx, submission }) => {
   console.log("sub", submission);
   console.log("idx", idx);
-  const { assignment_title, assignment_marks, status, obtain_marks } =
+  const { _id,assignment_title, assignment_marks, status, obtain_marks } =
     submission;
   return (
     <tr className="border-2 border-[#024950] text-sm md:text-lg">
@@ -23,7 +23,7 @@ const MySubmissionCard = ({ idx, submission }) => {
         </button>
       </td>
       <dialog id="my_modal_4" className="modal">
-        <MySubmissionModal></MySubmissionModal>
+        <MySubmissionModal id={_id}></MySubmissionModal>
       </dialog>
     </tr>
   );
