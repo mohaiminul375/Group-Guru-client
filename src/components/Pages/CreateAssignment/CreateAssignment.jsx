@@ -13,6 +13,12 @@ const CreateAssignment = () => {
 
   const onSubmit = (data) => {
     data.due_date = startDate;
+    console.log('assignment mark',data.assignment_marks)
+    if(data.assignment_marks>100 || data.assignment_marks<20){
+    return toast.error('mark should be 20-100 range')
+    } else if(data.assignment_description.length<7){
+      return toast.error('description length must be 7 character or more')
+    }
     console.log(data);
     axios.post('http://localhost:5000/all-assignment',data)
     .then(data=>{
@@ -38,7 +44,7 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5 ">
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">User Email</span>
+                  <span className="text-base font-bold">Your Email</span>
                 </label>
                 <input
                   type="text"
@@ -53,7 +59,7 @@ const CreateAssignment = () => {
              
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">Assignment Creator</span>
+                  <span className="text-base font-bold">Your Name</span>
                 </label>
                 <input
                   type="text"
@@ -108,7 +114,7 @@ const CreateAssignment = () => {
                 <input
                   type="number"
                   className="input input-bordered"
-                  placeholder="you assignment marks"
+                  placeholder="your assignment marks"
                   {...register("assignment_marks")}
                   required
                 />

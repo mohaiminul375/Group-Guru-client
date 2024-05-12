@@ -59,7 +59,6 @@ const AssignmentCard = ({ assignment }) => {
         icon: "error",
         title: "Oops...",
         text: "You can update after login",
-        footer: '<a href="/login">Go to Login</a>'
       });
       }else{
 

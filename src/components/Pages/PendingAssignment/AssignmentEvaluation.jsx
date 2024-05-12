@@ -30,6 +30,9 @@ const AssignmentEvaluation = ({ assignment }) => {
     axios.patch(`http://localhost:5000/submitted-assignment/${_id}`,postMark)
     .then(data=>{
         console.log('update marks',data.data);
+        if(data.data.modifiedCount){
+          toast.success('update successfully please close the modal')
+        }
     })
   };
 

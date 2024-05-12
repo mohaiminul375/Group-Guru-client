@@ -1,4 +1,5 @@
 // import React from 'react';
+import { FaArrowLeft } from "react-icons/fa6";
 
 // import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
@@ -9,6 +10,7 @@ const AssignmentDetails = () => {
   // console.log(data);
   const {
     assignment_title,
+    assignment_creator,
     userEmail,
     photo_url,
     assignment_description,
@@ -20,28 +22,40 @@ const AssignmentDetails = () => {
 
   return (
     <div className="mt-16">
-      <div className="border-2 border-[#024950] w-full md:max-w-5xl mx-auto p-8 rounded-md bg-[#024a5050]">
+      <div className="w-full md:max-w-5xl mb-10">
+        <Link to='/assignment'>
+        <h5 className="flex gap-3 items-center text-2xl font-Jaini"><FaArrowLeft/>Back to Assignment page</h5>
+        </Link>
+      </div>
+      <div className="border-2 border-[#024950]  mx-auto p-8 rounded-md bg-[#024a5050]">
         <h2 className="text-3xl font-bold text-[#024950]">
           {assignment_title}
         </h2>
-        <h5 className="text-base font-bold">
-          Created By: <span>{userEmail}</span>
+        <h5 className="text-base font-bold flex flex-row gap-3">
+          Created By: <div>
+         
+          {assignment_creator}
+          <br />
+            {userEmail} 
+        
+          </div>
         </h5>
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="md:w-1/2">
             <img className="mt-8" src={photo_url} alt="" />
-            <p className="text-xl mt-4">{assignment_description}</p>
+            <p className="text-xl mt-4"><span className="font-bold underline">Description:  </span>
+            <span>{assignment_description}</span></p>
           </div>
           <div className="md:w-1/2">
             <div className="space-y-3">
               <h5 className="text-xl font-bold">
-                Assignment Difficulty:<span>{difficulty_level}</span>
+                Assignment Difficulty: <span className="text-[#024950]">{difficulty_level}</span>
               </h5>
               <h5 className="text-xl font-bold">
-                Assignment Mark:<span>{assignment_marks}</span>
+                Assignment Mark: <span className="text-[#024950]">{assignment_marks}</span>
               </h5>
               <h5 className="text-xl font-bold">
-                Assignment Deadline:<span>{due_date.toLocaleString()}</span>
+                Assignment Deadline: <span className="text-[#024950]">{due_date.toLocaleString()}</span>
               </h5>
             </div>
             <div className="mt-8 flex justify-end">

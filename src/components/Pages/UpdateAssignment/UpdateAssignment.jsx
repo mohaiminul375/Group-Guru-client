@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../provider/AuthProvider";
 import DatePicker from "react-datepicker";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
 const UpdateAssignment = () => {
     const navigate=useNavigate();
   const { data } = useLoaderData();
@@ -39,7 +40,14 @@ const UpdateAssignment = () => {
   };
 
   return (
-    <div className="mt-16 bg-[#024a5050] rounded-xl">
+    <>
+    <div className="w-full md:max-w-5xl mt-16 mb-10">
+        <Link to='/assignment'>
+        <h5 className="flex gap-3 items-center text-2xl font-Jaini"><FaArrowLeft/>Back to Assignment page</h5>
+        </Link>
+      </div>
+    <div className=" bg-[#024a5050] rounded-xl">
+       
       <div className="border-2 rounded-xl">
         <h2 className="text-3xl text-center font-bold mt-5 font-Jaini">
           Update Assignment Info
@@ -95,7 +103,7 @@ const UpdateAssignment = () => {
                   defaultValue={assignment_marks}
                   type="number"
                   className="input input-bordered"
-                  placeholder="you assignment marks"
+                  placeholder="your assignment marks"
                   {...register("assignment_marks")}
                   required
                 />
@@ -149,7 +157,7 @@ const UpdateAssignment = () => {
             </div>
             <input
               type="submit"
-              value="Create Assignment"
+              value="Update Assignment"
               className="w-full text-xl py-2 cursor-pointer border bg-[#024950] text-white rounded-md"
             />
           </form>
@@ -157,6 +165,7 @@ const UpdateAssignment = () => {
         <Toaster />
       </div>
     </div>
+    </>
   );
 };
 
