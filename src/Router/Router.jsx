@@ -10,6 +10,7 @@ import AssignmentDetails from "../components/Pages/AssignmentDetails/AssignmentD
 import axios from "axios";
 import MySubmission from "../components/Pages/MySubmission/MySubmission";
 import PendingAssignment from "../components/Pages/PendingAssignment/PendingAssignment";
+import UpdateAssignment from "../components/Pages/UpdateAssignment/UpdateAssignment";
 
 export const router= createBrowserRouter([{
     path:'/',
@@ -46,6 +47,11 @@ export const router= createBrowserRouter([{
     {
         path:'/pending-assignment',
         element:<PrivateRouter><PendingAssignment></PendingAssignment></PrivateRouter>
+    },
+    {
+        path:'/update-assignment/:id',
+        element:<UpdateAssignment></UpdateAssignment>,
+        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`)
     }
 
 ]

@@ -31,7 +31,7 @@ const SubmitAssignment = ({ data }) => {
     console.log("res from server", data);
     if (data.insertedId) {
       reset();
-      toast.success("submitted successful");
+      toast.success("submitted successful. Please close the modal");
     }
   };
 
@@ -60,36 +60,6 @@ const SubmitAssignment = ({ data }) => {
           <div className="md:flex flex-row gap-5 ">
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="text-base font-bold">Creator Email</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                placeholder=""
-                required
-                value={userEmail}
-                readOnly
-                {...register("userEmail")}
-              />
-            </div>
-
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="text-base font-bold">Assignment Creator</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                placeholder="enter your name"
-                value={assignment_creator}
-                required
-                {...register("assignment_creator")}
-              />
-            </div>
-          </div>
-          <div className="md:flex flex-row gap-5 ">
-            <div className="form-control md:w-1/2">
-              <label className="label">
                 <span className="text-base font-bold">Examinee Email</span>
               </label>
               <input
@@ -102,7 +72,7 @@ const SubmitAssignment = ({ data }) => {
                 {...register("examinee_email")}
               />
             </div>
-
+{/* row2 */}
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="text-base font-bold">Examinee Name</span>
@@ -117,7 +87,7 @@ const SubmitAssignment = ({ data }) => {
               />
             </div>
           </div>
-          {/* row2 */}
+          {/* row3 */}
           <div className="md:flex flex-row gap-5">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -133,6 +103,7 @@ const SubmitAssignment = ({ data }) => {
                 {...register("assignment_title")}
               />
             </div>
+            {/* row4 */}
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="text-base font-bold">

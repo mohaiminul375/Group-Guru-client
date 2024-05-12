@@ -24,7 +24,7 @@ const MySubmission = () => {
           <table className="table border-2 border-[#024950] text-center">
             {/* head */}
             <thead className="border-2 border-[#024950]">
-              <tr className="border-2 border-[#024950] text-base md:text-xl font-bold text-[#024950]">
+              <tr className="border-2 border-[#024950] text-base md:text-base font-bold text-[#024950]">
                 <th>SL</th>
                 <th>Assignment Title</th>
                 <th>Status</th>

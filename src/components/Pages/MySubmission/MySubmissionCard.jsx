@@ -6,7 +6,7 @@ const MySubmissionCard = ({ idx, submission }) => {
   const { _id,assignment_title, assignment_marks, status, obtain_marks } =
     submission;
   return (
-    <tr className="border-2 border-[#024950] text-sm md:text-lg">
+    <tr className="border-2 border-[#024950] font-bold">
       <th>{idx + 1}</th>
       <td>{assignment_title}</td>
       <td>{status}</td>

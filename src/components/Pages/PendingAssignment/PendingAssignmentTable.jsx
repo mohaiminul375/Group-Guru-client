@@ -18,14 +18,9 @@ const PendingAssignmentTable = ({ assignment,idx }) => {
     console.log(modal_id)
   }
   return (
-    <tr>
+    <tr className="font-bold border-2 border-[#024950]">
       <th>{idx+1}</th>
       <td>{assignment_title}</td>
-      <td>
-        {assignment_creator}
-        <br />
-        {userEmail}
-      </td>
       <td>
         {examinee_name}
         <br />
@@ -44,6 +39,7 @@ const PendingAssignmentTable = ({ assignment,idx }) => {
       </td>
       <dialog id={`${_id}`} className="modal">
         <AssignmentEvaluation
+        id={_id}
         assignment={assignment}
         ></AssignmentEvaluation>
       </dialog>

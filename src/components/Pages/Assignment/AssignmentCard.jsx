@@ -1,13 +1,14 @@
 import { BsPencilSquare } from "react-icons/bs";
 import { IoTrashOutline } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 const AssignmentCard = ({ assignment }) => {
+  const navigate=useNavigate()
   const {user}=useContext(AuthContext);
   console.log(assignment);
   const {_id, photo_url, assignment_title, difficulty_level, assignment_marks,
@@ -51,6 +52,20 @@ const AssignmentCard = ({ assignment }) => {
       // 
      
     }
+
+    const handleUpdateNavigate=()=>{
+      if(!user){
+       return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You can update after login",
+        footer: '<a href="/login">Go to Login</a>'
+      });
+      }else{
+
+        navigate(`/update-assignment/${_id}`)
+      }
+    }
   return (
     <div className="w-full md:max-w-lg p-4 shadow-md bg-gray-50 rounded-md">
       <div className="space-y-4">
@@ -78,13 +93,13 @@ const AssignmentCard = ({ assignment }) => {
           </h4>
         </div>
         <div className="flex justify-between py-5 text-2xl font-bold">
-          <Link>
+          <button onClick={handleUpdateNavigate}>
             {" "}
             <BsPencilSquare
               title="update"
               className="cursor-pointer  hover:text-[#024950]"
             />
-          </Link>
+          </button>
           <button onClick={()=>handleDeleteAssignment(_id)}>
             <IoTrashOutline
               title="delete"

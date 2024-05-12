@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const AssignmentEvaluation = ({ assignment }) => {
   const {user}=useContext(AuthContext);
@@ -20,6 +21,11 @@ const AssignmentEvaluation = ({ assignment }) => {
     console.log(postMark)
     if (user?.email == examinee_email) {
       return toast.error("examinee can't evaluate an assignment")
+    } else if(assignment_marks < postMark.obtain_marks){
+       return toast.error(`please submit less than ${assignment_marks}`)
+      } else if(postMark.obtain_marks <0){
+      return toast.error(`submit a number 0 or above`)
+      
     }
     axios.patch(`http://localhost:5000/submitted-assignment/${_id}`,postMark)
     .then(data=>{
@@ -36,30 +42,14 @@ const AssignmentEvaluation = ({ assignment }) => {
         </form>
       </div>
       <div className="flex flex-col md:flex-row justify-between">
-        <div className="md:w-1/2">
-          <div className="font-bold">
-            <h2 className="text-xl font-bold text-[#024950]">Assignment_info</h2>
-            <p className="text-base">{assignment_title}</p>
-            <p className="text-base">Mark: {assignment_marks}</p>
-          </div>
-          <div className="mt-3">
-            <h2 className="text-xl font-bold text-[#024950]">Examinee_info</h2>
-            <p className="text-base">{examinee_name}</p>
-            <p className="text-base">{userEmail}</p>
-          </div>
-          {/* submission */}
-          <div className="mt-5">
-            <h2 className="text-xl font-bold text-[#024950]">Submission</h2>
-            <div className="text-xl">
-              <p className="font-bold">Pdf/doc Link</p>
-              <p>{assignment_submission}</p>
-
-              <p className="font-bold mt-3">Quick note</p>
-              <p>{quick_note}</p>
-            </div>
-          </div>
-        </div>
         {/*  */}
+        <div className="md:w-1/2 text-left space-y-3">
+          <h2 className="text-2xl text-left text-[#024950]">Submission Info</h2>
+          <p className="font-bold text-[#024950] text-lg">Submission Link: <Link to={`${assignment_submission}`} target="_blank"><span className="text-black underline text-base">{assignment_submission}</span></Link></p>
+          <p className="font-bold text-[#024950] text-lg">Submission Note</p>
+          <p className="text-black text-base">{quick_note}</p>
+
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2">
           <div className="flex gap-3">

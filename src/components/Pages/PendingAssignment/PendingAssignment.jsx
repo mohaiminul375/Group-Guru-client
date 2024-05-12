@@ -25,13 +25,12 @@ const PendingAssignment = () => {
       }
       <div className="mt-16">
         <div className="overflow-x-auto">
-          <table className="table">
+          <table className="table text-center">
             {/* head */}
-            <thead>
-              <tr>
+            <thead className="border-2 border-[#024950]">
+              <tr className="text-base font-bold text-[#024950] border-2 border-[#024950]">
                 <th>SL</th>
                 <th>Assignment Title</th>
-                <th>Creator</th>
                 <th>Examinee</th>
                 <th>Marks </th>
                 <th>Action</th>
