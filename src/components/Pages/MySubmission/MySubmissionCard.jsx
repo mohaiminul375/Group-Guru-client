@@ -15,15 +15,16 @@ const MySubmissionCard = ({ idx, submission }) => {
       </td>
       <td>
         <button
-          onClick={() => document.getElementById("my_modal_4").showModal()}
+          onClick={() => document.getElementById(`${_id}`).showModal()}
           disabled={status == "pending"}
           className="p-2 bg-[#024950] text-white rounded-full disabled:cursor-not-allowed text-xs md:text-base"
         >
           See feedback
         </button>
       </td>
-      <dialog id="my_modal_4" className="modal">
-        <MySubmissionModal id={_id}></MySubmissionModal>
+      <dialog id={_id} className="modal">
+        <MySubmissionModal
+        submission={submission}></MySubmissionModal>
       </dialog>
     </tr>
   );
