@@ -13,10 +13,7 @@ const PendingAssignmentTable = ({ assignment,idx }) => {
     examinee_name,
     assignment_marks,
   } = assignment;
-  const handleId=(id)=>{
-    const modal_id=id;
-    console.log(modal_id)
-  }
+
   return (
     <tr className="font-bold border-2 border-[#024950]">
       <th>{idx+1}</th>

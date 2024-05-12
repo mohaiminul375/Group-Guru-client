@@ -21,7 +21,10 @@ const SubmitAssignment = ({ data }) => {
   const onSubmit = async (submission) => {
     submission.status = "pending";
     submission.assignment_marks = assignment_marks;
-  //  if()
+   if(!submission.assignment_submission.startsWith('https://')){
+    toast.error('please input a valid link')
+   return
+   }
     console.log(submission);
     const { data } = await axios.post(
       `http://localhost:5000/submitted-assignment`,

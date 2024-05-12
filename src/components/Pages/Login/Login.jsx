@@ -7,7 +7,7 @@ import { FaCircleXmark } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const { logIn } = useContext(AuthContext);
+  const { logIn,googleLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const location=useLocation();
@@ -42,6 +42,21 @@ const Login = () => {
         setError(error?.message)
       });
   };
+
+  // google login
+  const handleGoogleLogin=()=>{
+    googleLogin()
+    .then(result=>{
+      console.log(result.user)
+      toast.success('login successfully');
+      setTimeout(()=>{
+        navigate(from)
+      },1000)
+    })
+    .catch(error=>{
+      setError(error?.message)
+    })
+  }
   const handleRemoveError = () => {
     setError("");
   };
@@ -134,9 +149,10 @@ const Login = () => {
                   or Login in with
                 </p>
 
-                <a
+                <button
+                onClick={handleGoogleLogin}
                   href="#"
-                  className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] "
+                  className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full"
                 >
                   <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                     <path
@@ -157,8 +173,8 @@ const Login = () => {
                     />
                   </svg>
 
-                  <span className="mx-2">Sign in with Google</span>
-                </a>
+                  <span className="mx-2">Log in with Google</span>
+                </button>
                 <a
                   href="#"
                   className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] "

@@ -18,6 +18,15 @@ const CreateAssignment = () => {
     return toast.error('mark should be 20-100 range')
     } else if(data.assignment_description.length<7){
       return toast.error('description length must be 7 character or more')
+    }else if (!data.photo_url.startsWith('https://')) {
+      // setError("your link must be start with https://");
+      toast.error('image link must start with https://')
+      return;
+    } 
+    else if(!(data.photo_url.endsWith('.png') ||(data.photo_url.endsWith('.jpg')||(data.photo_url.endsWith('.jpeg'))))){
+      // setError('link must be end with .png/.jpg./.jpeg')
+      toast.error('link must be end with .jpg/.jpeg/.png')
+      return
     }
     console.log(data);
     axios.post('http://localhost:5000/all-assignment',data)
@@ -44,7 +53,7 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5 ">
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">Your Email</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Your Email</span>
                 </label>
                 <input
                   type="text"
@@ -59,7 +68,7 @@ const CreateAssignment = () => {
              
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">Your Name</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Your Name</span>
                 </label>
                 <input
                   type="text"
@@ -75,7 +84,7 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5">
             <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">Assignment Title</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Assignment Title</span>
                 </label>
                 <input
                   type="text"
@@ -88,6 +97,7 @@ const CreateAssignment = () => {
               <div className="form-control md:w-1/2">
                 <label className="label">
                   <span className="text-base font-bold">
+                  <span className="text-red-600">*</span>
                     Assignment difficulty Level
                   </span>
                 </label>
@@ -109,7 +119,7 @@ const CreateAssignment = () => {
               
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">Assignment Marks</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Assignment Marks</span>
                 </label>
                 <input
                   type="number"
@@ -121,7 +131,7 @@ const CreateAssignment = () => {
               </div>
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold">Due Date</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Due Date</span>
                 </label>
                 <DatePicker
                   className="w-full h-[48px] input-bordered"
@@ -136,7 +146,7 @@ const CreateAssignment = () => {
               
             <div className="form-control w-full">
                 <label className="label">
-                  <span className="text-base font-bold">Photo URL</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Photo URL</span>
                 </label>
                 <input
                   type="text"
@@ -151,7 +161,7 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5">
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="text-base font-bold">Description</span>
+                  <span className="text-base font-bold"><span className="text-red-600">*</span>Description</span>
                 </label>
                 <textarea
                   name=""
