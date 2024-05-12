@@ -1,16 +1,20 @@
 import login from "../../../assets/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
-  const { createUser,updateUserProfile,setUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile, setUser, googleLogin } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-
-  const handleSubmit = async(e) => {
+  const location=useLocation();
+  const navigate=useNavigate();
+  const from= location.state || '/';
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const userName = form.userName.value;
@@ -26,19 +30,43 @@ const Register = () => {
         "Password must contain at least one uppercase letter and one lowercase letter."
       );
       return;
+    } 
+    else if (!photoURL.startsWith('https://')) {
+      setError("your link must be start with https://");
+      return;
+    } 
+    else if(!(photoURL.endsWith('.png') ||(photoURL.endsWith('.jpg')||(photoURL.endsWith('.jpeg'))))){
+      setError('link must be end with .png/.jpg./.jpeg')
     }
 
-    try{
-     const result= await createUser(email,password)
-     console.log(result.user)
-     updateUserProfile(userName,photoURL)
-     setUser({ ...result?.user, photoURL, displayName: userName })
-       
+    try {
+      const result = await createUser(email, password);
+      console.log(result.user);
+      updateUserProfile(userName, photoURL);
+      setUser({ ...result?.user, photoURL, displayName: userName });
+      toast.success('login successfully');
+      setTimeout(()=>{
+        navigate(from)
+      },1000)
+    } catch (error) {
+      console.log(error);
+      setError(error?.message);
     }
-    catch(error){
-    console.log(error)
-    setError(error?.message)
-    }
+  };
+  // google login
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+        toast.success('login successfully');
+        setTimeout(()=>{
+          navigate(from)
+        },1000)
+      })
+      .catch((error) => {
+        setError(error?.message);
+      });
   };
 
   const handleRemoveError = () => {
@@ -189,6 +217,7 @@ const Register = () => {
                 </p>
 
                 <a
+                onClick={handleGoogleLogin}
                   href="#"
                   className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] "
                 >
@@ -254,6 +283,7 @@ const Register = () => {
             </form>
           </div>
         </section>
+        <Toaster/>
       </div>
     </div>
   );

@@ -10,11 +10,10 @@ import axios from "axios";
 const SubmitAssignment = ({ data }) => {
   console.log(data);
   const {
-    userEmail,
+ 
     assignment_title,
     assignment_marks,
 
-    assignment_creator,
   } = data;
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
@@ -22,7 +21,7 @@ const SubmitAssignment = ({ data }) => {
   const onSubmit = async (submission) => {
     submission.status = "pending";
     submission.assignment_marks = assignment_marks;
-
+  //  if()
     console.log(submission);
     const { data } = await axios.post(
       `http://localhost:5000/submitted-assignment`,
@@ -60,7 +59,7 @@ const SubmitAssignment = ({ data }) => {
           <div className="md:flex flex-row gap-5 ">
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="text-base font-bold">Examinee Email</span>
+                <span className="text-base font-bold"><span className="text-red-600">*</span>Examinee Email</span>
               </label>
               <input
                 type="text"
@@ -68,14 +67,14 @@ const SubmitAssignment = ({ data }) => {
                 placeholder="enter your email"
                 required
                 value={user?.email}
-                readOnly
+                readOnly={user?.email}
                 {...register("examinee_email")}
               />
             </div>
 {/* row2 */}
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="text-base font-bold">Examinee Name</span>
+                <span className="text-base font-bold"><span className="text-red-600">*</span>Examinee Name</span>
               </label>
               <input
                 type="text"
@@ -91,7 +90,7 @@ const SubmitAssignment = ({ data }) => {
           <div className="md:flex flex-row gap-5">
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="text-base font-bold">Assignment Title</span>
+                <span className="text-base font-bold"><span className="text-red-600">*</span>Assignment Title</span>
               </label>
               <input
                 type="text"
@@ -107,7 +106,9 @@ const SubmitAssignment = ({ data }) => {
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="text-base font-bold">
+                <span className="text-red-600">*</span>
                   Submit your assignment Pdf/doc Link
+                  <span className="text-red-600"> (google drive)</span>
                 </span>
               </label>
               <input
@@ -124,14 +125,14 @@ const SubmitAssignment = ({ data }) => {
           <div className="md:flex flex-row gap-5">
             <div className="form-control w-full">
               <label className="label">
-                <span className="text-base font-bold">Add a quick note</span>
+                <span className="text-base font-bold"><span className="text-red-600">*</span>Add a quick note</span>
               </label>
               <textarea
                 name=""
                 id=""
                 rows={5}
                 placeholder="input quick note "
-                className="rounded-md p-8"
+                className="input-border  rounded-md p-8"
                 required
                 {...register("quick_note")}
               ></textarea>
