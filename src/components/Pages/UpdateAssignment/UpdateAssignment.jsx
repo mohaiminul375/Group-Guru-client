@@ -41,12 +41,12 @@ const UpdateAssignment = () => {
 
   return (
     <>
-    <div className="w-full md:max-w-5xl mt-16 mb-10">
+    <div className="w-full md:max-w-6xl mx-auto mt-16 mb-10">
         <Link to='/assignment'>
         <h5 className="flex gap-3 items-center text-2xl font-Jaini"><FaArrowLeft/>Back to Assignment page</h5>
         </Link>
       </div>
-    <div className=" bg-[#024a5050] rounded-xl">
+    <div className=" bg-[#024a5050] rounded-xl md:max-w-6xl mx-auto">
        
       <div className="border-2 rounded-xl">
         <h2 className="text-3xl text-center font-bold mt-5 font-Jaini">

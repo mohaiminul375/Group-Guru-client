@@ -1,8 +1,17 @@
 // import React from 'react';
 
+import axios from "axios";
+import { useRouteError } from "react-router-dom";
+
 const MySubmissionModal = ({ submission }) => {
-  const { _id, obtain_marks, assignment_marks, feedback,
-    assignment_submission } = submission;
+  const {
+    _id,
+    obtain_marks,
+    assignment_marks,
+    feedback,
+    assignment_submission,
+  } = submission;
+
   return (
     <div className="modal-box w-full md:max-w-5xl">
       <div className="modal-action">
@@ -11,7 +20,7 @@ const MySubmissionModal = ({ submission }) => {
           <button className="btn">Close</button>
         </form>
       </div>
-      <div className="text-left space-y-3">
+      <div className="text-left space-y-3 ">
         <h2 className="text-2xl text-[#024950]">
           Obtain Mark:{" "}
           <span className="text-black">
@@ -22,9 +31,13 @@ const MySubmissionModal = ({ submission }) => {
         <p className="text-lg">{feedback}</p>
       </div>
       <h2 className="text-center text-2xl font-bold">Your Submission</h2>
-       <div className="mt-5">
-         <iframe height='300px' width='100%' src={assignment_submission}></iframe>
-       </div>
+      <div className="mt-5">
+        <iframe
+          height="300px"
+          width="100%"
+          src={assignment_submission}
+        ></iframe>
+      </div>
     </div>
   );
 };

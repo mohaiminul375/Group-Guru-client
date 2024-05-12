@@ -14,7 +14,7 @@ const PendingAssignment = () => {
       });
   }, []);
   return (
-    <div className="mt-16">
+    <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="text-center text-4xl font-bold font-Jaini">
         <h2>ALL Pending Assignment</h2>
       </div>

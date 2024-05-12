@@ -21,7 +21,7 @@ const AssignmentDetails = () => {
 
 
   return (
-    <div className="mt-16">
+    <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="w-full md:max-w-5xl mb-10">
         <Link to='/assignment'>
         <h5 className="flex gap-3 items-center text-2xl font-Jaini"><FaArrowLeft/>Back to Assignment page</h5>

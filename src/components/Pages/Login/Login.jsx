@@ -61,7 +61,7 @@ const Login = () => {
     setError("");
   };
   return (
-    <div className="mt-16">
+    <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="flex justify-evenly items-center">
         <div className="w-[40%] hidden md:flex">
           <img src={login} className="w-full" alt="" />
