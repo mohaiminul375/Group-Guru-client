@@ -9,7 +9,7 @@ const MySubmissionCard = ({ idx, submission }) => {
     <tr className="border-2 border-[#024950] font-bold">
       <th>{idx + 1}</th>
       <td>{assignment_title}</td>
-      <td>{status}</td>
+      <td><span className={`${status == 'pending'&& 'bg-blue-400 text-white p-2 rounded-full font-normal'} ${status=='completed' && 'bg-green-700 text-white p-2 rounded-full font-normal'}`}>{status}</span></td>
       <td>
         {obtain_marks ? obtain_marks : "pending"}/{assignment_marks}
       </td>
