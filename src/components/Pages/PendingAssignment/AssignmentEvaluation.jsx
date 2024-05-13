@@ -7,24 +7,42 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
-
+import { QueryClient, useMutation } from "@tanstack/react-query";
 const AssignmentEvaluation = ({ assignment }) => {
   const { user } = useContext(AuthContext);
-  const axiosSecure=useAxiosSecure()
+  const queryClient = QueryClient;
+  const axiosSecure = useAxiosSecure();
   const {
     _id,
-    userEmail,
-    examinee_name,
     assignment_submission,
     quick_note,
     assignment_title,
     assignment_marks,
     examinee_email,
+    status,
+
   } = assignment;
-  console.log(user?.email, examinee_email);
+  console.log(assignment);
+
+  // tanStack query
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ _id, postMark }) => {
+      const { data } = await axiosSecure.patch(
+        `/submitted-assignment/${_id}`,
+        postMark
+      );
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("update successfully please close the modal");
+      // queryClient.invalidedQueries({queryKey:['']})
+      queryClient.invalidateQueries({ queryKey: ["pending-assignment"] });
+    },
+    // mutationKey: [],
+  });
 
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (postMark) => {
+  const onSubmit = async (postMark) => {
     console.log("assignment_marks", assignment_marks);
     console.log("obtain_marks", postMark.obtain_marks);
     postMark.status = "completed";
@@ -38,15 +56,11 @@ const AssignmentEvaluation = ({ assignment }) => {
       toast.error(`submit a number 0 or above`);
       return;
     }
-    axiosSecure
-      .patch(`/submitted-assignment/${_id}`, postMark)
-      .then((data) => {
-        console.log("update marks", data.data);
-        if (data.data.modifiedCount) {
-          toast.success("update successfully please close the modal");
-        }
-      });
+    //  .then((data) => {
+    //     console.log("update marks", data.data);
 
+    //   });
+    await mutateAsync({ _id, postMark });
     console.log(postMark);
   };
 
@@ -108,6 +122,7 @@ const AssignmentEvaluation = ({ assignment }) => {
           </div>
           <div className="mt-5 text-end">
             <input
+            disabled={status =='completed' }
               className="p-3 bg-[#024950] cursor-pointer text-white rounded-full"
               type="submit"
               value="Post Mark"

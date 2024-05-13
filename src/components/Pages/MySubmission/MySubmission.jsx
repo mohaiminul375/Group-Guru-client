@@ -21,6 +21,13 @@ const MySubmission = () => {
       <div className="text-center">
         <h2 className="text-4xl font-bold font-Jaini">My Submission</h2>
       </div>
+      {submissions.length == 0 && (
+        <div>
+          <h2 className="text-4xl text-center my-5 text-[#024950]">
+            You have't submit any assignment yet
+          </h2>
+        </div>
+      )}
       <div className="mt-16">
         <div className="overflow-x-auto">
           <table className="table border-2 border-[#024950] text-center">

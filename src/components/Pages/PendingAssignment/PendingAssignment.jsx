@@ -1,19 +1,40 @@
 // import React from 'react';
-
-import axios from "axios";
 import { useEffect, useState } from "react";
 import PendingAssignmentTable from "./PendingAssignmentTable";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { CircleLoader } from "react-spinners";
 
 const PendingAssignment = () => {
-  const axiosSecure=useAxiosSecure();
-  const [pendingAssignment, setPendingAssignment] = useState([]);
-  useEffect(() => {
-    axiosSecure.get("/pending-assignment?status=pending")
-      .then((data) => {
-        setPendingAssignment(data.data);
-      });
-  }, []);
+  const axiosSecure = useAxiosSecure();
+  // const [pendingAssignment, setPendingAssignment] = useState([]);
+  const {
+    data: pendingAssignment = [],
+    isPending,
+    refetch,
+    isError,
+    error,
+  } = useQuery({
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        "/pending-assignment?status=pending"
+      );
+      return data;
+    },
+    queryKey: ["pending-assignment"],
+  });
+  if (isPending) {
+    return (
+      <div className="flex justify-center mt-16">
+        <CircleLoader size={100} className="text-center" color="#024950" />
+      </div>
+    );
+  }
+  //   useEffect(() => {
+  //  .then((data) => {
+  //       setPendingAssignment(data.data);
+  //     });
+  //   }, []);
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="text-center text-4xl font-bold font-Jaini">
