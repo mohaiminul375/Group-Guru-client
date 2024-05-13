@@ -3,7 +3,7 @@
 import AssignmentEvaluation from "./AssignmentEvaluation";
 
 const PendingAssignmentTable = ({ assignment,idx }) => {
-  console.log(assignment);
+  // console.log(assignment);
   const {
     _id,
     assignment_title,

@@ -55,7 +55,7 @@ const AssignmentDetails = () => {
                 Assignment Mark: <span className="text-[#024950]">{assignment_marks}</span>
               </h5>
               <h5 className="text-xl font-bold">
-                Assignment Deadline: <span className="text-[#024950]">{due_date.toLocaleString()}</span>
+                Assignment Deadline: <span className="text-[#024950]">{new Date(due_date).toLocaleDateString()}</span>
               </h5>
             </div>
             <div className="mt-8 flex justify-end">

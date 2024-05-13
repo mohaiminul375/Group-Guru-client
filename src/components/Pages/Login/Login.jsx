@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
   const { logIn,googleLogin } = useContext(AuthContext);
@@ -31,6 +32,10 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         console.log(result.user);
+        axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
+        .then(data=>{
+          console.log('jwt',data.data)
+        })
         toast.success('login successfully');
         setTimeout(()=>{
           navigate(from)

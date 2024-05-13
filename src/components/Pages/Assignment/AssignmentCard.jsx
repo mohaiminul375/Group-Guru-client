@@ -10,7 +10,7 @@ import axios from "axios";
 const AssignmentCard = ({ assignment }) => {
   const navigate=useNavigate()
   const {user}=useContext(AuthContext);
-  console.log(assignment);
+  // console.log(assignment);
   const {_id, photo_url, assignment_title, difficulty_level, assignment_marks,
     userEmail } =
     assignment;
