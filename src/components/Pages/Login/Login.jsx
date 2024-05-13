@@ -53,6 +53,10 @@ const Login = () => {
     googleLogin()
     .then(result=>{
       console.log(result.user)
+      axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
+      .then(data=>{
+        console.log('jwt',data.data)
+      })
       toast.success('login successfully');
       setTimeout(()=>{
         navigate(from)

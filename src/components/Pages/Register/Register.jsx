@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, updateUserProfile, setUser, googleLogin } =
@@ -42,6 +43,8 @@ const Register = () => {
     try {
       const result = await createUser(email, password);
       console.log(result.user);
+      const {data}= await axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
+      console.log('token register pg',data)
       updateUserProfile(userName, photoURL);
       setUser({ ...result?.user, photoURL, displayName: userName });
       toast.success('login successfully');
@@ -59,6 +62,10 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
+        axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
+        .then(data=>{
+          console.log('jwt',data.data)
+        })
         toast.success('login successfully');
         setTimeout(()=>{
           navigate(from)

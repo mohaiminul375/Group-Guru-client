@@ -9,6 +9,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -41,6 +42,8 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
+    setLoading(true)
+    axios.get('http://localhost:5000/logout',{withCredentials:true})
     return signOut(auth);
   };
 

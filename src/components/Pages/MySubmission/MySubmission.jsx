@@ -8,7 +8,7 @@ const MySubmission = () => {
   const [submissions, setSubmissions] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/submitted-assignment?email=${user?.email}`)
+      .get(`http://localhost:5000/submitted-assignment?email=${user?.email}`,{withCredentials:true})
       .then((data) => {
         // console.log(data.data);
         setSubmissions(data.data);
