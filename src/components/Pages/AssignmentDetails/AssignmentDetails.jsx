@@ -2,12 +2,34 @@
 import { FaArrowLeft } from "react-icons/fa6";
 
 // import toast, { Toaster } from "react-hot-toast";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import SubmitAssignment from "../SubmitAssignment/SubmitAssignment";
+import { useQuery } from "@tanstack/react-query";
+import { CircleLoader } from "react-spinners";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 
 const AssignmentDetails = () => {
-  const { data } = useLoaderData();
+  const axiosSecure=useAxiosSecure()
+  const { id } = useParams();
+  console.log(id);
+  
   // console.log(data);
+  const { data:assignment_details, isPending } = useQuery({
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `http://localhost:5000/all-assignment/${id}`
+      );
+      return data;
+    },
+    queryKey:['assignment-details']
+  });
+  if(isPending){
+    return (
+      <div className="flex justify-center mt-16">
+        <CircleLoader size={100} className="text-center" color="#024950" />
+      </div>
+    );
+  }
   const {
     assignment_title,
     assignment_creator,
@@ -17,10 +39,10 @@ const AssignmentDetails = () => {
     difficulty_level,
     assignment_marks,
     due_date,
-  } = data;
-
+  } = assignment_details;
 
   return (
+   
     <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="w-full md:max-w-5xl mb-10">
         <Link to='/assignment'>
@@ -33,11 +55,11 @@ const AssignmentDetails = () => {
         </h2>
         <h5 className="text-base font-bold flex flex-row gap-3">
           Created By: <div>
-         
+
           {assignment_creator}
           <br />
-            {userEmail} 
-        
+            {userEmail}
+
           </div>
         </h5>
         <div className="flex flex-col md:flex-row md:justify-between">
@@ -73,7 +95,7 @@ const AssignmentDetails = () => {
       </div>
       <dialog id="my_modal_4" className="modal">
         {" "}
-        <SubmitAssignment data={data}></SubmitAssignment>
+        <SubmitAssignment data={assignment_details}></SubmitAssignment>
       </dialog>
     </div>
   );

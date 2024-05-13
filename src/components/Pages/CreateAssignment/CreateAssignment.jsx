@@ -58,9 +58,10 @@ const CreateAssignment = () => {
     console.log(new_assignment);
 
     await mutateAsync({ new_assignment });
+    reset()
   };
   return (
-    <div className="mt-16 bg-[#024a5050] rounded-xl">
+    <div className="mt-16 bg-[#024a5050] rounded-xl md:max-w-6xl mx-auto">
       <div className="border-2 rounded-xl">
         <h2 className="text-3xl text-center font-bold mt-5 font-Jaini">
           Create Your Assignment

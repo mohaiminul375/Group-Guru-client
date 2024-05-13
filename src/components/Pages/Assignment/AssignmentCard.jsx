@@ -90,8 +90,8 @@ const AssignmentCard = ({ assignment }) => {
             title={assignment_title}
             className="text-xl font-bold text-[#024950] cursor-pointer"
           >
-            {assignment_title.length > 35
-              ? assignment_title.slice(0, 35) + ".."
+            {assignment_title.length > 32
+              ? assignment_title.slice(0, 32) + ".."
               : assignment_title}
           </h3>
           <h4 className="text-base font-bold">

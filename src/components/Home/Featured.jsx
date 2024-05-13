@@ -6,7 +6,7 @@ const Featured = () => {
   const [assignments, setAssignment] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get("http://localhost:5000/all-assignment",{withCredentials:true});
+      const { data } = await axios.get("http://localhost:5000/all-assignment");
       console.log(data.slice(0, 6));
       setAssignment(data.slice(0, 6));
     };
