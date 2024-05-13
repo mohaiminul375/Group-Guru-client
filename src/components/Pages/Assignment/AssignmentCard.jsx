@@ -35,7 +35,7 @@ const AssignmentCard = ({ assignment }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           console.log('deleted',id)
-          axios.delete(`http://localhost:5000/all-assignment/${id}`)
+          axios.delete(`http://localhost:5000/all-assignment/${id}`,{withCredentials:true})
          .then(data=>{
           console.log(data.data)
           if(data.data.deletedCount){

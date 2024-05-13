@@ -29,7 +29,7 @@ const CreateAssignment = () => {
       return
     }
     console.log(data);
-    axios.post('http://localhost:5000/all-assignment',data)
+    axios.post('http://localhost:5000/all-assignment',data,{withCredentials:true})
     .then(data=>{
         console.log(data.data)
         if(data.data.insertedId){

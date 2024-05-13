@@ -38,7 +38,7 @@ export const router= createBrowserRouter([{
     {
         path:'/details/:id',
         element:<PrivateRouter><AssignmentDetails></AssignmentDetails></PrivateRouter>,
-        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`)
+        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`,{withCredentials:true})
     },
     {
         path:'/my-submission',
@@ -51,7 +51,7 @@ export const router= createBrowserRouter([{
     {
         path:'/update-assignment/:id',
         element:<UpdateAssignment></UpdateAssignment>,
-        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`)
+        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`,{withCredentials:true})
     }
 
 ]

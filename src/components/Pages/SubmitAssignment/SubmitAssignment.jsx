@@ -28,7 +28,7 @@ const SubmitAssignment = ({ data }) => {
     console.log(submission);
     const { data } = await axios.post(
       `http://localhost:5000/submitted-assignment`,
-      submission
+      submission,{withCredentials:true}
     );
     console.log("res from server", data);
     if (data.insertedId) {

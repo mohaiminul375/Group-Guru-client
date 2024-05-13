@@ -37,7 +37,7 @@ const AssignmentEvaluation = ({ assignment }) => {
       return;
     }
     axios
-      .patch(`http://localhost:5000/submitted-assignment/${_id}`, postMark)
+      .patch(`http://localhost:5000/submitted-assignment/${_id}`, postMark,{withCredentials:true})
       .then((data) => {
         console.log("update marks", data.data);
         if (data.data.modifiedCount) {

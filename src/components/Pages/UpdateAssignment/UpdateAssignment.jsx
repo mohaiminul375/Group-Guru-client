@@ -25,7 +25,7 @@ const UpdateAssignment = () => {
   const onSubmit = (update) => {
     update.due_date = startDate;
     console.log("update data", update);
-    axios.patch(`http://localhost:5000/all-assignment/${_id}`, update)
+    axios.patch(`http://localhost:5000/all-assignment/${_id}`, update,{withCredentials:true})
     .then(data=>{
 
         console.log(data.data);
