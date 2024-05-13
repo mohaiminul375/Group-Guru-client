@@ -1,7 +1,5 @@
 // import React from 'react';
 
-
-
 const MySubmissionModal = ({ submission }) => {
   const {
     _id,

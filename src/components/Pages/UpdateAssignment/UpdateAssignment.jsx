@@ -4,11 +4,13 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import DatePicker from "react-datepicker";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+// import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 const UpdateAssignment = () => {
-    const navigate=useNavigate();
+  const navigate=useNavigate();
   const { data } = useLoaderData();
+  const axiosSecure=useAxiosSecure();
   // console.log(data);
   const {
     _id,
@@ -25,7 +27,7 @@ const UpdateAssignment = () => {
   const onSubmit = (update) => {
     update.due_date = startDate;
     console.log("update data", update);
-    axios.patch(`http://localhost:5000/all-assignment/${_id}`, update,{withCredentials:true})
+    axiosSecure.patch(`http://localhost:5000/all-assignment/${_id}`, update,{withCredentials:true})
     .then(data=>{
 
         console.log(data.data);

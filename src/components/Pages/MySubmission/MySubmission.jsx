@@ -2,13 +2,15 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import MySubmissionCard from "./MySubmissionCard";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 
 const MySubmission = () => {
   const { user } = useContext(AuthContext);
   const [submissions, setSubmissions] = useState([]);
+  const axiosSecure=useAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/submitted-assignment?email=${user?.email}`,{withCredentials:true})
+    axiosSecure
+      .get(`/submitted-assignment?email=${user?.email}`)
       .then((data) => {
         // console.log(data.data);
         setSubmissions(data.data);

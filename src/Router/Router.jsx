@@ -7,12 +7,15 @@ import CreateAssignment from "../components/Pages/CreateAssignment/CreateAssignm
 import PrivateRouter from "./PrivateRouter";
 import Assignment from "../components/Pages/Assignment/Assignment";
 import AssignmentDetails from "../components/Pages/AssignmentDetails/AssignmentDetails";
-import axios from "axios";
 import MySubmission from "../components/Pages/MySubmission/MySubmission";
+// import axios from "axios";
 import PendingAssignment from "../components/Pages/PendingAssignment/PendingAssignment";
 import UpdateAssignment from "../components/Pages/UpdateAssignment/UpdateAssignment";
+import axios from "axios";
 
-export const router= createBrowserRouter([{
+export const router= createBrowserRouter(
+    [{
+    
     path:'/',
     element:<Root/>,
     children:[{

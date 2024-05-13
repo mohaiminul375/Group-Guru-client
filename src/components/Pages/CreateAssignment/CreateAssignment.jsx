@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure=useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
   const { register, handleSubmit,reset } = useForm();
 
@@ -29,7 +31,7 @@ const CreateAssignment = () => {
       return
     }
     console.log(data);
-    axios.post('http://localhost:5000/all-assignment',data,{withCredentials:true})
+    axiosSecure.post('/all-assignment',data)
     .then(data=>{
         console.log(data.data)
         if(data.data.insertedId){

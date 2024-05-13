@@ -6,9 +6,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 
 const AssignmentEvaluation = ({ assignment }) => {
   const { user } = useContext(AuthContext);
+  const axiosSecure=useAxiosSecure()
   const {
     _id,
     userEmail,
@@ -36,8 +38,8 @@ const AssignmentEvaluation = ({ assignment }) => {
       toast.error(`submit a number 0 or above`);
       return;
     }
-    axios
-      .patch(`http://localhost:5000/submitted-assignment/${_id}`, postMark,{withCredentials:true})
+    axiosSecure
+      .patch(`/submitted-assignment/${_id}`, postMark)
       .then((data) => {
         console.log("update marks", data.data);
         if (data.data.modifiedCount) {

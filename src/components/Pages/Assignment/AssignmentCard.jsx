@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
-import axios from "axios";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
+
 
 const AssignmentCard = ({ assignment }) => {
+  const axiosSecure=useAxiosSecure()
   const navigate=useNavigate()
   const {user}=useContext(AuthContext);
   // console.log(assignment);
@@ -35,7 +37,7 @@ const AssignmentCard = ({ assignment }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           console.log('deleted',id)
-          axios.delete(`http://localhost:5000/all-assignment/${id}`,{withCredentials:true})
+          axiosSecure.delete(`/all-assignment/${id}`)
          .then(data=>{
           console.log(data.data)
           if(data.data.deletedCount){

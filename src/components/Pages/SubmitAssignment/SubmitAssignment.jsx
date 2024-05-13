@@ -4,11 +4,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+// import axios from "axios";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 // import toast from "react-hot-toast";
 
 const SubmitAssignment = ({ data }) => {
-  console.log(data);
+  const axiosSecure=useAxiosSecure();
+  // console.log(data);
   const {
  
     assignment_title,
@@ -26,7 +28,7 @@ const SubmitAssignment = ({ data }) => {
    return
    }
     console.log(submission);
-    const { data } = await axios.post(
+    const { data } = await axiosSecure.post(
       `http://localhost:5000/submitted-assignment`,
       submission,{withCredentials:true}
     );

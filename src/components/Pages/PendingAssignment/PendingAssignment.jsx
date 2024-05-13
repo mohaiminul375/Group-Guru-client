@@ -3,13 +3,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PendingAssignmentTable from "./PendingAssignmentTable";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 
 const PendingAssignment = () => {
+  const axiosSecure=useAxiosSecure();
   const [pendingAssignment, setPendingAssignment] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/pending-assignment?status=pending", {
-        withCredentials: true,
-      })
+    axiosSecure.get("/pending-assignment?status=pending")
       .then((data) => {
         setPendingAssignment(data.data);
       });
