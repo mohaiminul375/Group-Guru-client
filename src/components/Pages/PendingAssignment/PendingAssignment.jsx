@@ -11,9 +11,6 @@ const PendingAssignment = () => {
   const {
     data: pendingAssignment = [],
     isPending,
-    refetch,
-    isError,
-    error,
   } = useQuery({
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -38,7 +35,7 @@ const PendingAssignment = () => {
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="text-center text-4xl font-bold font-Jaini">
-        <h2>ALL Pending Assignment</h2>
+        <h2 className="text-4xl text-center my-5">ALL Pending Assignment</h2>
       </div>
       {pendingAssignment.length == 0 && (
         <div>

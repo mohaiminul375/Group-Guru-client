@@ -4,41 +4,60 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
-  const axiosSecure=useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
   const [startDate, setStartDate] = useState(new Date());
-  const { register, handleSubmit,reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = (data) => {
-    data.due_date = startDate;
-    console.log('assignment mark',data.assignment_marks)
-    if(data.assignment_marks>100 || data.assignment_marks<20){
-    return toast.error('mark should be 20-100 range')
-    } else if(data.assignment_description.length<7){
-      return toast.error('description length must be 7 character or more')
-    }else if (!data.photo_url.startsWith('https://')) {
+  // tan stack query
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ new_assignment }) => {
+      const { data } = await axiosSecure.post(
+        "/all-assignment",
+        new_assignment
+      );
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("assignment created successfully");
+      queryClient.invalidateQueries({ queryKey: ["all-assignment"] });
+    },
+  });
+  // react hook form
+  const onSubmit = async (new_assignment) => {
+    new_assignment.due_date = startDate;
+    console.log("assignment mark", new_assignment.assignment_marks);
+    if (
+      new_assignment.assignment_marks > 100 ||
+      new_assignment.assignment_marks < 20
+    ) {
+      return toast.error("mark should be 20-100 range");
+    } else if (new_assignment.assignment_description.length < 7) {
+      return toast.error("description length must be 7 character or more");
+    } else if (!new_assignment.photo_url.startsWith("https://")) {
       // setError("your link must be start with https://");
-      toast.error('image link must start with https://')
+      toast.error("image link must start with https://");
       return;
-    } 
-    else if(!(data.photo_url.endsWith('.png') ||(data.photo_url.endsWith('.jpg')||(data.photo_url.endsWith('.jpeg'))))){
+    } else if (
+      !(
+        new_assignment.photo_url.endsWith(".png") ||
+        new_assignment.photo_url.endsWith(".jpg") ||
+        new_assignment.photo_url.endsWith(".jpeg")
+      )
+    ) {
       // setError('link must be end with .png/.jpg./.jpeg')
-      toast.error('link must be end with .jpg/.jpeg/.png')
-      return
+      toast.error("link must be end with .jpg/.jpeg/.png");
+      return;
     }
-    console.log(data);
-    axiosSecure.post('/all-assignment',data)
-    .then(data=>{
-        console.log(data.data)
-        if(data.data.insertedId){
-            toast.success('assignment created successfully')
-            reset()
-        }
-    })
+    console.log(new_assignment);
+
+    await mutateAsync({ new_assignment });
   };
   return (
     <div className="mt-16 bg-[#024a5050] rounded-xl">
@@ -55,7 +74,9 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5 ">
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Your Email</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Your Email
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -67,10 +88,12 @@ const CreateAssignment = () => {
                   {...register("userEmail")}
                 />
               </div>
-             
+
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Your Name</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Your Name
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -84,9 +107,11 @@ const CreateAssignment = () => {
             </div>
             {/* row2 */}
             <div className="md:flex flex-row gap-5">
-            <div className="form-control md:w-1/2">
+              <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Assignment Title</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Assignment Title
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -99,7 +124,7 @@ const CreateAssignment = () => {
               <div className="form-control md:w-1/2">
                 <label className="label">
                   <span className="text-base font-bold">
-                  <span className="text-red-600">*</span>
+                    <span className="text-red-600">*</span>
                     Assignment difficulty Level
                   </span>
                 </label>
@@ -114,14 +139,14 @@ const CreateAssignment = () => {
                   <option>Hard</option>
                 </select>
               </div>
-              
             </div>
             {/* row3 */}
             <div className="md:flex flex-row gap-5">
-              
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Assignment Marks</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Assignment Marks
+                  </span>
                 </label>
                 <input
                   type="number"
@@ -133,7 +158,9 @@ const CreateAssignment = () => {
               </div>
               <div className="form-control md:w-1/2">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Due Date</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Due Date
+                  </span>
                 </label>
                 <DatePicker
                   className="w-full h-[48px] input-bordered"
@@ -145,10 +172,11 @@ const CreateAssignment = () => {
             </div>
             {/* row3 */}
             <div className="md:flex flex-row gap-5">
-              
-            <div className="form-control w-full">
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Photo URL</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Photo URL
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -163,7 +191,9 @@ const CreateAssignment = () => {
             <div className="md:flex flex-row gap-5">
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="text-base font-bold"><span className="text-red-600">*</span>Description</span>
+                  <span className="text-base font-bold">
+                    <span className="text-red-600">*</span>Description
+                  </span>
                 </label>
                 <textarea
                   name=""
@@ -183,7 +213,7 @@ const CreateAssignment = () => {
             />
           </form>
         </div>
-        <Toaster/>
+        <Toaster />
       </div>
     </div>
   );

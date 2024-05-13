@@ -7,10 +7,10 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 const AssignmentEvaluation = ({ assignment }) => {
   const { user } = useContext(AuthContext);
-  const queryClient = QueryClient;
+  const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
   const {
     _id,
@@ -20,7 +20,6 @@ const AssignmentEvaluation = ({ assignment }) => {
     assignment_marks,
     examinee_email,
     status,
-
   } = assignment;
   console.log(assignment);
 
@@ -35,10 +34,9 @@ const AssignmentEvaluation = ({ assignment }) => {
     },
     onSuccess: () => {
       toast.success("update successfully please close the modal");
-      // queryClient.invalidedQueries({queryKey:['']})
       queryClient.invalidateQueries({ queryKey: ["pending-assignment"] });
+      queryClient.invalidateQueries({ queryKey: ["assignment-submission"] });
     },
-    // mutationKey: [],
   });
 
   const { register, handleSubmit, reset } = useForm();
@@ -56,10 +54,7 @@ const AssignmentEvaluation = ({ assignment }) => {
       toast.error(`submit a number 0 or above`);
       return;
     }
-    //  .then((data) => {
-    //     console.log("update marks", data.data);
-
-    //   });
+    
     await mutateAsync({ _id, postMark });
     console.log(postMark);
   };
@@ -122,7 +117,7 @@ const AssignmentEvaluation = ({ assignment }) => {
           </div>
           <div className="mt-5 text-end">
             <input
-            disabled={status =='completed' }
+              disabled={status == "completed"}
               className="p-3 bg-[#024950] cursor-pointer text-white rounded-full"
               type="submit"
               value="Post Mark"

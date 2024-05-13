@@ -6,67 +6,75 @@ import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const AssignmentCard = ({ assignment }) => {
-  const axiosSecure=useAxiosSecure()
-  const navigate=useNavigate()
-  const {user}=useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   // console.log(assignment);
-  const {_id, photo_url, assignment_title, difficulty_level, assignment_marks,
-    userEmail } =
-    assignment;
-    // delete
-    const handleDeleteAssignment=(id)=>{
-      if(user?.email !== userEmail){
-        return Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "You haven't access delete,Because you didn't create this assignment",
-        });
-      }
+  const {
+    _id,
+    photo_url,
+    assignment_title,
+    difficulty_level,
+    assignment_marks,
+    userEmail,
+  } = assignment;
+  // tan stack query
 
-      Swal.fire({
-        title: "Are you sure want to delete?",
-        text: "You will lost your data",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          console.log('deleted',id)
-          axiosSecure.delete(`/all-assignment/${id}`)
-         .then(data=>{
-          console.log(data.data)
-          if(data.data.deletedCount){
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-          }
-         })
-         
-        }
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ id }) => {
+      const { data } = await axiosSecure.delete(`/all-assignment/${id}`);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey:['all-assignment']});
+    },
+  });
+  // delete
+  const handleDeleteAssignment =  (id) => {
+    if (user?.email !== userEmail) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You haven't access delete,Because you didn't create this assignment",
       });
-      // 
-     
     }
 
-    const handleUpdateNavigate=()=>{
-      if(!user){
-       return Swal.fire({
+    Swal.fire({
+      title: "Are you sure want to delete?",
+      text: "You will lost your data",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+       mutateAsync({ id });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your data has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+    //
+  };
+
+  const handleUpdateNavigate = () => {
+    if (!user) {
+      return Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "You can update after login",
       });
-      }else{
-
-        navigate(`/update-assignment/${_id}`)
-      }
+    } else {
+      navigate(`/update-assignment/${_id}`);
     }
+  };
   return (
     <div className="w-full md:max-w-lg p-4 shadow-md bg-gray-50 rounded-md">
       <div className="space-y-4">
@@ -101,7 +109,7 @@ const AssignmentCard = ({ assignment }) => {
               className="cursor-pointer  hover:text-[#024950]"
             />
           </button>
-          <button onClick={()=>handleDeleteAssignment(_id)}>
+          <button onClick={() => handleDeleteAssignment(_id)}>
             <IoTrashOutline
               title="delete"
               className="cursor-pointer  hover:text-red-800"

@@ -1,21 +1,31 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import MySubmissionCard from "./MySubmissionCard";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { CircleLoader } from "react-spinners";
 
 const MySubmission = () => {
   const { user } = useContext(AuthContext);
-  const [submissions, setSubmissions] = useState([]);
-  const axiosSecure=useAxiosSecure();
-  useEffect(() => {
-    axiosSecure
-      .get(`/submitted-assignment?email=${user?.email}`)
-      .then((data) => {
-        // console.log(data.data);
-        setSubmissions(data.data);
-      });
-  }, []);
+  // const [submissions, setSubmissions] = useState([]);
+  const axiosSecure = useAxiosSecure();
+  const { data: submissions = [], isPending } = useQuery({
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `/submitted-assignment?email=${user?.email}`
+      );
+      return data;
+    },
+    queryKey: ["assignment-submission"],
+  });
+  if (isPending) {
+    return (
+      <div className="flex justify-center mt-16">
+        <CircleLoader size={100} className="text-center" color="#024950" />
+      </div>
+    );
+  }
+
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="text-center">
@@ -23,7 +33,7 @@ const MySubmission = () => {
       </div>
       {submissions.length == 0 && (
         <div>
-          <h2 className="text-4xl text-center my-5 text-[#024950]">
+          <h2 className="text-4xl text-center my-5">
             You have't submit any assignment yet
           </h2>
         </div>
@@ -37,7 +47,9 @@ const MySubmission = () => {
                 <th>SL</th>
                 <th>Assignment Title</th>
                 <th>Status</th>
-                <th>Obtain Mark/<br></br>Assignment Marks</th>
+                <th>
+                  Obtain Mark/<br></br>Assignment Marks
+                </th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -50,9 +62,9 @@ const MySubmission = () => {
                 <td>Blue</td>
               </tr> */}
               {/* row 2 */}
-              {submissions.map((submission, idx) => (
+              {submissions?.map((submission, idx) => (
                 <MySubmissionCard
-                idx={idx}
+                  idx={idx}
                   key={submission._id}
                   submission={submission}
                 ></MySubmissionCard>
