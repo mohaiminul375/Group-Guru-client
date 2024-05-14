@@ -6,7 +6,7 @@ import { FaCircleXmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const AssignmentEvaluation = ({ assignment }) => {
   const { user } = useContext(AuthContext);
@@ -53,9 +53,9 @@ const AssignmentEvaluation = ({ assignment }) => {
       toast.error(`submit a number 0 or above`);
       return;
     }
-    
+
     await mutateAsync({ _id, postMark });
-    reset()
+    reset();
     // console.log(postMark);
   };
 
@@ -125,12 +125,20 @@ const AssignmentEvaluation = ({ assignment }) => {
           </div>
         </form>
       </div>
+      <h2 className="text-center text-2xl font-bold">Your Submission</h2>
+      <div className="mt-5">
+        <iframe
+          height="300px"
+          width="100%"
+          src={assignment_submission}
+        ></iframe>
+      </div>
 
       <Toaster />
     </div>
   );
 };
-AssignmentEvaluation.propTypes={
-  assignment:PropTypes.object
-}
+AssignmentEvaluation.propTypes = {
+  assignment: PropTypes.object,
+};
 export default AssignmentEvaluation;

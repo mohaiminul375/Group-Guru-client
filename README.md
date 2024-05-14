@@ -1,5 +1,8 @@
 # Group guru
+# Live URL: https://group-guru-375m.web.app
+- group guru is a Online education assignment platform
 
+ # website features
 
 # npm and package
 - vite
