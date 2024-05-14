@@ -2,6 +2,7 @@ import PendingAssignmentTable from "./PendingAssignmentTable";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { CircleLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const PendingAssignment = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,6 +29,9 @@ const PendingAssignment = () => {
  
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
+       <Helmet>
+                <title>Group Guru | Pending Assignments</title>
+            </Helmet>
       <div className="text-center text-4xl font-bold font-Jaini">
         <h2 className="text-4xl text-center my-5">ALL Pending Assignment</h2>
       </div>

@@ -3,6 +3,7 @@ import {  useState } from "react";
 import AssignmentCard from "./AssignmentCard";
 import { useQuery } from "@tanstack/react-query";
 import { CircleLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const Assignment = () => {
   const [count,setCount]=useState(0);
@@ -56,6 +57,9 @@ const numberOfPages=Math.ceil(count/itemsPerPg)
 
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
+       <Helmet>
+                <title>Group Guru | All Assignment</title>
+            </Helmet>
       <div className="text-center">
         <h2 className="text-center text-4xl font-bold font-Jaini">
           All Assignment

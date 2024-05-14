@@ -4,6 +4,7 @@ import MySubmissionCard from "./MySubmissionCard";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { CircleLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const MySubmission = () => {
   const { user } = useContext(AuthContext);
@@ -28,6 +29,9 @@ const MySubmission = () => {
 
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
+       <Helmet>
+                <title>Group Guru | My Submission</title>
+            </Helmet>
       <div className="text-center">
         <h2 className="text-4xl font-bold font-Jaini">My Submission</h2>
       </div>
@@ -54,14 +58,8 @@ const MySubmission = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              {/* <tr className="border-2 border-[#024950]">
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr> */}
-              {/* row 2 */}
+          
+            
               {submissions?.map((submission, idx) => (
                 <MySubmissionCard
                   idx={idx}

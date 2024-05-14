@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 const UpdateAssignment = () => {
   const navigate = useNavigate();
   const { data } = useLoaderData();
@@ -45,12 +46,15 @@ const UpdateAssignment = () => {
     update.due_date = startDate;
     console.log("update data", update);
     await mutateAsync({ update });
-    reset()
+    reset();
   };
 
   return (
     <>
       <div className="w-full md:max-w-6xl mx-auto mt-16 mb-10">
+        <Helmet>
+          <title>Group Guru | Update Assignment</title>
+        </Helmet>
         <Link to="/assignment">
           <h5 className="flex gap-3 items-center text-2xl font-Jaini">
             <FaArrowLeft />
