@@ -18,7 +18,7 @@ console.log(filter)
   const {isLoading}=useQuery({
     queryFn:async()=>{
       const {data}= await axios.get(
-             `http://localhost:5000/all-assignment-count?filter=${filter}`
+             `https://gorup-guru-server.vercel.app/all-assignment-count?filter=${filter}`,{withCredentials:true}
            );
            setCount(data.count)
            return data;
@@ -30,7 +30,7 @@ console.log(filter)
   const { data: assignments, isPending } = useQuery({
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/all-assignment?page=${currentPg}&size=${itemsPerPg}&filter=${filter}`
+        `https://gorup-guru-server.vercel.app/all-assignment?page=${currentPg}&size=${itemsPerPg}&filter=${filter}`,{withCredentials:true}
       );
       return data;
     },

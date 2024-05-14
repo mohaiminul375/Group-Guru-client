@@ -29,7 +29,7 @@ const SubmitAssignment = ({ data }) => {
    }
     console.log(submission);
     const { data } = await axiosSecure.post(
-      `http://localhost:5000/submitted-assignment`,
+      `https://gorup-guru-server.vercel.app/submitted-assignment`,
       submission,{withCredentials:true}
     );
     console.log("res from server", data);

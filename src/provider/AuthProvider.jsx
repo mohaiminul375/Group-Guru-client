@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true)
-    axios.get('http://localhost:5000/logout',{withCredentials:true})
+    axios.get('https://gorup-guru-server.vercel.app/logout',{withCredentials:true})
     return signOut(auth);
   };
 

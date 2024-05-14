@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 // import React from 'react';
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://gorup-guru-server.vercel.app",
   withCredentials: true,
 });
 const useAxiosSecure = () => {

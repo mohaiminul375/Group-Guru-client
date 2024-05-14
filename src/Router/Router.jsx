@@ -56,7 +56,7 @@ export const router= createBrowserRouter(
     {
         path:'/update-assignment/:id',
         element:<PrivateRouter><UpdateAssignment></UpdateAssignment></PrivateRouter>,
-        loader:({params})=>axios.get(`http://localhost:5000/all-assignment/${params.id}`,{withCredentials:true})
+        loader:({params})=>axios.get(`https://gorup-guru-server.vercel.app/all-assignment/${params.id}`,{withCredentials:true})
     }
 
 ]

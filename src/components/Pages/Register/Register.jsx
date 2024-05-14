@@ -12,9 +12,9 @@ const Register = () => {
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const location=useLocation();
-  const navigate=useNavigate();
-  const from= location.state || '/';
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/";
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,6 +23,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(userName, photoURL, email, password);
+    setError("")
     if (password.length < 6) {
       setError("Password must be 6 character or more");
       return;
@@ -31,29 +32,45 @@ const Register = () => {
         "Password must contain at least one uppercase letter and one lowercase letter."
       );
       return;
-    } 
-    else if (!photoURL.startsWith('https://')) {
+    } else if (!photoURL.startsWith("https://")) {
       setError("your link must be start with https://");
       return;
-    } 
-    else if(!(photoURL.endsWith('.png') ||(photoURL.endsWith('.jpg')||(photoURL.endsWith('.jpeg'))))){
-      setError('link must be end with .png/.jpg./.jpeg')
+    } else if (
+      !(
+        photoURL.endsWith(".png") ||
+        photoURL.endsWith(".jpg") ||
+        photoURL.endsWith(".jpeg")
+      )
+    ) {
+      setError("link must be end with .png/.jpg./.jpeg");
     }
 
     try {
       const result = await createUser(email, password);
       console.log(result.user);
-      const {data}= await axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
-      console.log('token register pg',data)
+      const { data } = await axios.post(
+        "https://gorup-guru-server.vercel.app/jwt",
+        { email: result?.user?.email },
+        { withCredentials: true }
+      );
+      console.log("token register pg", data);
       updateUserProfile(userName, photoURL);
       setUser({ ...result?.user, photoURL, displayName: userName });
-      toast.success('login successfully');
-      setTimeout(()=>{
-        navigate(from)
-      },1000)
+      toast.success("login successfully");
+      setTimeout(() => {
+        navigate(from);
+      }, 1000);
     } catch (error) {
+      if (
+        error?.message == "Firebase: Error (auth/email-already-in-use)."
+      ) {
+        setError("Already have an account on this user");
+      } else {
+        setError(error?.message);
+      }
+
       console.log(error);
-      setError(error?.message);
+      // setError(error?.message);
     }
   };
   // google login
@@ -62,14 +79,19 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
-        axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
-        .then(data=>{
-          console.log('jwt',data.data)
-        })
-        toast.success('login successfully');
-        setTimeout(()=>{
-          navigate(from)
-        },1000)
+        axios
+          .post(
+            "https://gorup-guru-server.vercel.app/jwt",
+            { email: result?.user?.email },
+            { withCredentials: true }
+          )
+          .then((data) => {
+            console.log("jwt", data.data);
+          });
+        toast.success("login successfully");
+        setTimeout(() => {
+          navigate(from);
+        }, 1000);
       })
       .catch((error) => {
         setError(error?.message);
@@ -224,7 +246,7 @@ const Register = () => {
                 </p>
 
                 <a
-                onClick={handleGoogleLogin}
+                  onClick={handleGoogleLogin}
                   href="#"
                   className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] "
                 >
@@ -290,7 +312,7 @@ const Register = () => {
             </form>
           </div>
         </section>
-        <Toaster/>
+        <Toaster />
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ const UpdateAssignment = () => {
   const { mutateAsync } = useMutation({
     mutationFn: async ({ update }) => {
       const { data } = await axiosSecure.patch(
-        `http://localhost:5000/all-assignment/${_id}`,
+        `https://gorup-guru-server.vercel.app/all-assignment/${_id}`,
         update
       );
       return data;
