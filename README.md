@@ -16,5 +16,6 @@
 - react hot toast
 - sweet alert 2
 - tan stack query
+- react type writer
 # Auth
 - firebase (Auth and host)

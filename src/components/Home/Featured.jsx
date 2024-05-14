@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AssignmentCard from "../Pages/Assignment/AssignmentCard";
+import FeaturedCard from "./FeaturedCard";
 
 const Featured = () => {
   const [assignments, setAssignment] = useState([]);
@@ -20,10 +21,10 @@ const Featured = () => {
       </div>
       <div className="mt-16 grid md:grid-cols-3 gap-5">
         {assignments.map((assignment) => (
-          <AssignmentCard
+          <FeaturedCard
             key={assignment._id}
             assignment={assignment}
-          ></AssignmentCard>
+          ></FeaturedCard>
         ))}
       </div>
     </div>
