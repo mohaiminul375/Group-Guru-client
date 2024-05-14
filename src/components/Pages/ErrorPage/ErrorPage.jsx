@@ -1,11 +1,27 @@
-// import React from 'react';
+import errorImg from '../../../assets/Error .jpg'
+
+import { Link, useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
-    return (
-        <div>
-            <h2>Error</h2>
-        </div>
-    );
+  const error = useRouteError();
+  return (
+    <div className="flex flex-col items-center justify-center   md:max-w-6xl mx-auto">
+      <div className=''>
+        {error.status === 404 ? (
+          <div className="md:w-1/2 mx-auto">
+           <img className='w-full' src={errorImg} alt="" />
+          </div>
+        ) : (
+          <div className="text-5xl text-red-600">Something Went Wrong</div>
+        )}
+      </div>
+      <Link to="/">
+        <button className="mt-12 p-4 rounded-lg bg-[#024950] text-white border-none">
+          Back to Home
+        </button>
+      </Link>
+    </div>
+  );
 };
 
 export default ErrorPage;
