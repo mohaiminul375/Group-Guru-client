@@ -12,12 +12,14 @@ import MySubmission from "../components/Pages/MySubmission/MySubmission";
 import PendingAssignment from "../components/Pages/PendingAssignment/PendingAssignment";
 import UpdateAssignment from "../components/Pages/UpdateAssignment/UpdateAssignment";
 import axios from "axios";
+import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
 
 export const router= createBrowserRouter(
     [{
     
     path:'/',
     element:<Root/>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[{
         path:'/',
         element:<Home></Home>

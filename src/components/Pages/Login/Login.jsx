@@ -32,7 +32,7 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         console.log(result.user);
-        axios.post('http://localhost:5000/jwt',{email:result?.user?.email},{withCredentials:true})
+        axios.post('https://gorup-guru-server.vercel.app/jwt',{email:result?.user?.email},{withCredentials:true})
         .then(data=>{
           console.log('jwt',data.data)
         })

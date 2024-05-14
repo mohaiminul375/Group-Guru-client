@@ -17,7 +17,7 @@ const AssignmentDetails = () => {
   const { data:assignment_details, isPending } = useQuery({
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `http://localhost:5000/all-assignment/${id}`
+        `/all-assignment/${id}`
       );
       return data;
     },
