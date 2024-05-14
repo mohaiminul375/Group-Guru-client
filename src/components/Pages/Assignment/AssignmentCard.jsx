@@ -7,7 +7,7 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
+import PropTypes from 'prop-types';
 const AssignmentCard = ({ assignment }) => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
@@ -127,5 +127,10 @@ const AssignmentCard = ({ assignment }) => {
     </div>
   );
 };
+
+AssignmentCard.propTypes={
+  assignment:PropTypes.object,
+
+}
 
 export default AssignmentCard;

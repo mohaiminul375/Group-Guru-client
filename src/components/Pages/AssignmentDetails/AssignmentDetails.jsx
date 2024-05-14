@@ -1,7 +1,4 @@
-// import React from 'react';
 import { FaArrowLeft } from "react-icons/fa6";
-
-// import toast, { Toaster } from "react-hot-toast";
 import { Link,  useParams } from "react-router-dom";
 import SubmitAssignment from "../SubmitAssignment/SubmitAssignment";
 import { useQuery } from "@tanstack/react-query";

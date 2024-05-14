@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

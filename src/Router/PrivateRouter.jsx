@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
+import PropTypes from 'prop-types';
 
 const PrivateRouter = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -20,4 +21,8 @@ const PrivateRouter = ({ children }) => {
  return <Navigate state={location.pathname} to="/login"></Navigate>;
 };
 
+
+PrivateRouter.propTypes={
+  children:PropTypes.func
+}
 export default PrivateRouter;

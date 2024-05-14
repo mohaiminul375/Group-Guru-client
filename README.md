@@ -17,5 +17,7 @@
 - sweet alert 2
 - tan stack query
 - react type writer
+- react helmet
+- react prop types
 # Auth
 - firebase (Auth and host)

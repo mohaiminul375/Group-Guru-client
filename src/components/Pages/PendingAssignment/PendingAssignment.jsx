@@ -1,5 +1,3 @@
-// import React from 'react';
-import { useEffect, useState } from "react";
 import PendingAssignmentTable from "./PendingAssignmentTable";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +5,7 @@ import { CircleLoader } from "react-spinners";
 
 const PendingAssignment = () => {
   const axiosSecure = useAxiosSecure();
-  // const [pendingAssignment, setPendingAssignment] = useState([]);
+ 
   const {
     data: pendingAssignment = [],
     isPending,
@@ -27,11 +25,7 @@ const PendingAssignment = () => {
       </div>
     );
   }
-  //   useEffect(() => {
-  //  .then((data) => {
-  //       setPendingAssignment(data.data);
-  //     });
-  //   }, []);
+ 
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
       <div className="text-center text-4xl font-bold font-Jaini">

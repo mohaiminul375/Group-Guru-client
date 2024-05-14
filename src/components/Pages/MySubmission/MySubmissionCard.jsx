@@ -1,5 +1,5 @@
 import MySubmissionModal from "./MySubmissionModal";
-
+import PropTypes from 'prop-types';
 const MySubmissionCard = ({ idx, submission }) => {
   console.log("sub", submission);
   console.log("idx", idx);
@@ -29,5 +29,8 @@ const MySubmissionCard = ({ idx, submission }) => {
     </tr>
   );
 };
-
+MySubmissionCard.propTypes={
+idx:PropTypes.number,
+submission:PropTypes.object
+}
 export default MySubmissionCard;

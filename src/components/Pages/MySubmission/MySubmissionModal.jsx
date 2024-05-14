@@ -1,8 +1,8 @@
-// import React from 'react';
+import PropTypes from 'prop-types';
+
 
 const MySubmissionModal = ({ submission }) => {
   const {
-    _id,
     obtain_marks,
     assignment_marks,
     feedback,
@@ -38,5 +38,7 @@ const MySubmissionModal = ({ submission }) => {
     </div>
   );
 };
-
+MySubmissionModal.propTypes={
+  submission:PropTypes.object
+}
 export default MySubmissionModal;

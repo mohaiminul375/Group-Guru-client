@@ -1,14 +1,11 @@
-// import React from 'react';
-
 import AssignmentEvaluation from "./AssignmentEvaluation";
+import PropTypes from 'prop-types';
 
 const PendingAssignmentTable = ({ assignment,idx }) => {
   // console.log(assignment);
   const {
     _id,
     assignment_title,
-    userEmail,
-    assignment_creator,
     examinee_email,
     examinee_name,
     assignment_marks,
@@ -43,5 +40,8 @@ const PendingAssignmentTable = ({ assignment,idx }) => {
     </tr>
   );
 };
-
+PendingAssignmentTable.propTypes={
+  assignment:PropTypes.object,
+  idx:PropTypes.number,
+}
 export default PendingAssignmentTable;

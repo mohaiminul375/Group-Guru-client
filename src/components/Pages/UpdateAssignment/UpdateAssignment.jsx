@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { AuthContext } from "../../../provider/AuthProvider";
 import DatePicker from "react-datepicker";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -46,6 +45,7 @@ const UpdateAssignment = () => {
     update.due_date = startDate;
     console.log("update data", update);
     await mutateAsync({ update });
+    reset()
   };
 
   return (

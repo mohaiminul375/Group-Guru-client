@@ -1,5 +1,3 @@
-// import React from "react";
-import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
@@ -8,6 +6,8 @@ import { FaCircleXmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
+import PropTypes from 'prop-types';
+
 const AssignmentEvaluation = ({ assignment }) => {
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
@@ -16,7 +16,6 @@ const AssignmentEvaluation = ({ assignment }) => {
     _id,
     assignment_submission,
     quick_note,
-    assignment_title,
     assignment_marks,
     examinee_email,
     status,
@@ -56,7 +55,8 @@ const AssignmentEvaluation = ({ assignment }) => {
     }
     
     await mutateAsync({ _id, postMark });
-    console.log(postMark);
+    reset()
+    // console.log(postMark);
   };
 
   return (
@@ -130,5 +130,7 @@ const AssignmentEvaluation = ({ assignment }) => {
     </div>
   );
 };
-
+AssignmentEvaluation.propTypes={
+  assignment:PropTypes.object
+}
 export default AssignmentEvaluation;

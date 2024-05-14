@@ -1,12 +1,10 @@
-// import React from 'react';
 import { FaCircleXmark } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
-// import axios from "axios";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
-// import toast from "react-hot-toast";
+import PropTypes from 'prop-types';
 
 const SubmitAssignment = ({ data }) => {
   const axiosSecure=useAxiosSecure();
@@ -155,5 +153,7 @@ const SubmitAssignment = ({ data }) => {
     </div>
   );
 };
-
+SubmitAssignment.propTypes={
+  data:PropTypes.object
+}
 export default SubmitAssignment;
