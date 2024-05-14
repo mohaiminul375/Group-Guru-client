@@ -76,13 +76,13 @@ const AssignmentCard = ({ assignment }) => {
     }
   };
   return (
-    <div className="w-full md:max-w-lg p-4 shadow-md bg-gray-50 rounded-md">
+    <div className="w-full md:max-w-lg p-4 shadow-md bg-gray-50 rounded-md  lg:transition lg:hover:scale-105">
       <div className="space-y-4">
         <div className="space-y-2">
           <img
             src={photo_url}
             alt=""
-            className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+            className="block object-cover object-center w-full rounded-md h-72 bg-gray-500"
           />
         </div>
         <div className="space-y-2">
@@ -94,14 +94,14 @@ const AssignmentCard = ({ assignment }) => {
               ? assignment_title.slice(0, 32) + ".."
               : assignment_title}
           </h3>
-          <h4 className="text-base font-bold">
+          <h4 className="text-base font-bold text-black">
             Difficulty Level: <span>{difficulty_level}</span>
           </h4>
-          <h4 className="text-base font-bold">
+          <h4 className="text-base font-bold text-black">
             Assignment Marks: <span>{assignment_marks}</span>
           </h4>
         </div>
-        <div className="flex justify-between py-5 text-2xl font-bold">
+        <div className="flex justify-between py-5 text-2xl font-bold text-black">
           <button onClick={handleUpdateNavigate}>
             {" "}
             <BsPencilSquare
