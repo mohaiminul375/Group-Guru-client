@@ -245,10 +245,10 @@ const Register = () => {
                   or Sign Up in with
                 </p>
 
-                <a
+                <button
                   onClick={handleGoogleLogin}
-                  href="#"
-                  className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] "
+                
+                  className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full"
                 >
                   <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                     <path
@@ -270,32 +270,21 @@ const Register = () => {
                   </svg>
 
                   <span className="mx-2">Sign Up with Google</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] "
-                >
-                  <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
+                </button>
+                <button className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 48 48"
+                   className="w-6 h-6 mx-2"
+                  >
                     <path
-                      d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                      fill="#FFC107"
-                    />
-                    <path
-                      d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z"
-                      fill="#FF3D00"
-                    />
-                    <path
-                      d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z"
-                      fill="#4CAF50"
-                    />
-                    <path
-                      d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                      fill="#1976D2"
+                      fill="#1877F2"
+                      d="M24 0C10.745 0 0 10.745 0 24c0 11.871 8.688 21.688 20 23.6V30.975h-6.035v-6.975H20v-5.302c0-5.967 3.644-9.246 8.96-9.246 2.544 0 4.726.189 5.36.274v6.213h-3.683c-2.891 0-3.451 1.375-3.451 3.398V24h7.023l-.915 6.975H27.186V47.6c11.312-1.912 20-11.729 20-23.6 0-13.255-10.745-24-24-24z"
                     />
                   </svg>
 
                   <span className="mx-2">Sign Up with Facebook</span>
-                </a>
+                </button>
 
                 <div className="my-6 text-center ">
                   <p>

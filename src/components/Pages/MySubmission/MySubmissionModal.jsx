@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { FaCircleXmark } from 'react-icons/fa6';
 
 
 const MySubmissionModal = ({ submission }) => {
@@ -12,9 +13,14 @@ const MySubmissionModal = ({ submission }) => {
   return (
     <div className="modal-box w-full md:max-w-5xl">
       <div className="modal-action">
-        <form method="dialog">
+      <form method="dialog">
           {/* if there is a button, it will close the modal */}
-          <button className="btn">Close</button>
+          <button
+            className="rounded-full text-[#024950]  tooltip tooltip-bottom"
+            data-tip="close"
+          >
+            <FaCircleXmark className="text-4xl " />
+          </button>
         </form>
       </div>
       <div className="text-left space-y-3 ">

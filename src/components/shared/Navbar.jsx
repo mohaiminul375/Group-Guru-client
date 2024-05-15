@@ -114,7 +114,7 @@ const Navbar = () => {
               className="theme-controller"
               value="synthwave"
               onChange={handleThemeToggle}
-              checked={theme=='dark'}
+              checked={theme == "dark"}
             />
 
             {/* sun icon */}
@@ -143,9 +143,9 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="btn btn-ghost btn-circle avatar "
               >
-                <div className="w-10 rounded-full tooltip tooltip-left" data-tip={user?.displayName}>
+                <div title={user?.displayName} className="w-10 rounded-full ">
                   <img
                     referrerPolicy="no-referrer"
                     alt="User Profile Photo"

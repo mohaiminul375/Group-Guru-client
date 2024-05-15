@@ -8,9 +8,10 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, TwitterAuthProvider,FacebookAuthProvider } from "firebase/auth";
 import axios from "axios";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+// import {  } from "firebase/auth/web-extension";
 
 export const AuthContext = createContext(null);
 
@@ -18,6 +19,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const twitterProvider = new TwitterAuthProvider();
+  const facebookProvider= new FacebookAuthProvider();
   // create User
   const createUser = (email, password) => {
     setLoading(true);
@@ -31,9 +34,16 @@ const AuthProvider = ({ children }) => {
   };
 
   // google login
-  const googleLogin=()=>{
-    return signInWithPopup(auth,googleProvider)
-  }
+  const googleLogin = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+  // facebook Provider
+  const twitterLogin = () => {
+    return signInWithPopup(auth, twitterProvider);
+  };
+  const facebookLogin = () => {
+    return signInWithPopup(auth, facebookProvider);
+  };
   // update profile
 
   const updateUserProfile = (name, photo) => {
@@ -44,8 +54,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setLoading(true)
-    axios.get('https://gorup-guru-server.vercel.app/logout',{withCredentials:true})
+    setLoading(true);
+    axios.get("https://gorup-guru-server.vercel.app/logout", {
+      withCredentials: true,
+    });
     return signOut(auth);
   };
 
@@ -64,6 +76,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     logIn,
     googleLogin,
+    facebookLogin,
+    twitterLogin,
     logOut,
     updateUserProfile,
     user,
@@ -74,7 +88,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
-AuthProvider.propTypes={
-  children:PropTypes.func
-}
+AuthProvider.propTypes = {
+  children: PropTypes.func,
+};
 export default AuthProvider;
