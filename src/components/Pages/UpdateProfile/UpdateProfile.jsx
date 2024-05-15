@@ -61,7 +61,7 @@ const UpdateProfile = () => {
                 value={user?.email}
                 placeholder="email"
                 className="input input-bordered"
-                disabled
+                disabled={user?.email}
                 required
               />
             </div>

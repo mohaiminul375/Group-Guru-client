@@ -8,7 +8,8 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const Login = () => {
-  const { logIn, googleLogin, twitterLogin,facebookLogin } = useContext(AuthContext);
+  const { logIn, googleLogin, twitterLogin, facebookLogin } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const location = useLocation();
@@ -52,8 +53,8 @@ const Login = () => {
       });
   };
 
-  const handleFacebookLogin = () => {
-    facebookLogin()
+  const handleTwitterLogin = () => {
+    twitterLogin()
       .then((result) => {
         console.log(result.user);
         axios
@@ -72,7 +73,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error?.message);
-        setError(error?.message)
+        setError(error?.message);
       });
   };
 
@@ -119,7 +120,7 @@ const Login = () => {
           )}
           <div className="flex items-center justify-center  px-12 mx-auto w-full">
             <form onSubmit={handleLogIn} className="w-full">
-              <h1 className="mt-3 text-2xl font-semibold capitalize sm:text-3xl text-black text-center">
+              <h1 className="mt-3 text-2xl font-bold capitalize sm:text-3xl text-base-content text-center">
                 Log In
               </h1>
 
@@ -185,7 +186,7 @@ const Login = () => {
 
               <div className="mt-6">
                 <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#024950] rounded-lg hover:bg-[#024a50c5] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                Login
+                  Login
                 </button>
 
                 <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
@@ -219,21 +220,18 @@ const Login = () => {
                   <span className="mx-2">Log in with Google</span>
                 </button>
                 <button
-                  onClick={handleFacebookLogin}
+                  onClick={handleTwitterLogin}
                   className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full"
                 >
                   <svg
+                  className="w-6 h-6 mx-2"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 48 48"
-                    className="w-6 h-6 mx-2"
+                    viewBox="0 0 24 24"
                   >
-                    <path
-                      fill="#1877F2"
-                      d="M24 0C10.745 0 0 10.745 0 24c0 11.871 8.688 21.688 20 23.6V30.975h-6.035v-6.975H20v-5.302c0-5.967 3.644-9.246 8.96-9.246 2.544 0 4.726.189 5.36.274v6.213h-3.683c-2.891 0-3.451 1.375-3.451 3.398V24h7.023l-.915 6.975H27.186V47.6c11.312-1.912 20-11.729 20-23.6 0-13.255-10.745-24-24-24z"
-                    />
+                    <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775A4.932 4.932 0 0 0 23.337 3.1a9.865 9.865 0 0 1-3.127 1.195 4.924 4.924 0 0 0-8.384 4.485A13.975 13.975 0 0 1 1.671 3.149a4.922 4.922 0 0 0-.667 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.229-.616v.061c0 2.386 1.697 4.374 3.946 4.827a4.922 4.922 0 0 1-2.224.084 4.927 4.927 0 0 0 4.6 3.416 9.868 9.868 0 0 1-6.1 2.105c-.396 0-.787-.023-1.17-.068a13.944 13.944 0 0 0 7.557 2.213c9.054 0 14.002-7.496 14.002-13.985 0-.21 0-.423-.015-.634A9.993 9.993 0 0 0 24 4.557z" />
                   </svg>
 
-                  <span className="mx-2">Log in with Facebook</span>
+                  <span className="mx-2">Log in with Twitter</span>
                 </button>
 
                 <div className="my-6 text-center ">

@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const Register = () => {
-  const { createUser, updateUserProfile, setUser, googleLogin,facebookLogin } =
+  const { createUser, updateUserProfile, setUser, googleLogin, facebookLogin,twitterLogin } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -23,7 +23,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(userName, photoURL, email, password);
-    setError("")
+    setError("");
     if (password.length < 6) {
       setError("Password must be 6 character or more");
       return;
@@ -61,9 +61,7 @@ const Register = () => {
         navigate(from);
       }, 1000);
     } catch (error) {
-      if (
-        error?.message == "Firebase: Error (auth/email-already-in-use)."
-      ) {
+      if (error?.message == "Firebase: Error (auth/email-already-in-use).") {
         setError("Already have an account on this user");
       } else {
         setError(error?.message);
@@ -98,33 +96,30 @@ const Register = () => {
       });
   };
 
-
-// facebook login
-const handleFacebookLogin = () => {
-  facebookLogin()
-    .then((result) => {
-      console.log(result.user);
-      axios
-        .post(
-          "https://gorup-guru-server.vercel.app/jwt",
-          { email: result?.user?.email },
-          { withCredentials: true }
-        )
-        .then((data) => {
-          console.log("jwt", data.data);
-        });
-      toast.success("login successfully");
-      setTimeout(() => {
-        navigate(from);
-      }, 1000);
-    })
-    .catch((error) => {
-      console.log(error?.message);
-      setError(error?.message)
-    });
-};
-
-
+  // facebook login
+  const handleTwitterLogin = () => {
+    twitterLogin()
+      .then((result) => {
+        console.log(result.user);
+        axios
+          .post(
+            "https://gorup-guru-server.vercel.app/jwt",
+            { email: result?.user?.email },
+            { withCredentials: true }
+          )
+          .then((data) => {
+            console.log("jwt", data.data);
+          });
+        toast.success("login successfully");
+        setTimeout(() => {
+          navigate(from);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log(error?.message);
+        setError(error?.message);
+      });
+  };
 
   const handleRemoveError = () => {
     setError("");
@@ -266,7 +261,7 @@ const handleFacebookLogin = () => {
 
               <div className="mt-6">
                 <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#024950] rounded-lg hover:bg-[#024a50c5] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-              Sign Up
+                  Sign Up
                 </button>
 
                 <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
@@ -275,7 +270,6 @@ const handleFacebookLogin = () => {
 
                 <button
                   onClick={handleGoogleLogin}
-                
                   className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full"
                 >
                   <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
@@ -300,20 +294,19 @@ const handleFacebookLogin = () => {
                   <span className="mx-2">Sign Up with Google</span>
                 </button>
                 <button
-                onClick={handleFacebookLogin}
-                className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full">
+                  onClick={handleTwitterLogin}
+                  className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full"
+                >
                   <svg
+                  className="w-6 h-6 mx-2"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 48 48"
-                   className="w-6 h-6 mx-2"
+                    viewBox="0 0 24 24"
+                    
                   >
-                    <path
-                      fill="#1877F2"
-                      d="M24 0C10.745 0 0 10.745 0 24c0 11.871 8.688 21.688 20 23.6V30.975h-6.035v-6.975H20v-5.302c0-5.967 3.644-9.246 8.96-9.246 2.544 0 4.726.189 5.36.274v6.213h-3.683c-2.891 0-3.451 1.375-3.451 3.398V24h7.023l-.915 6.975H27.186V47.6c11.312-1.912 20-11.729 20-23.6 0-13.255-10.745-24-24-24z"
-                    />
+                    <path d="M24 4.557a9.93 9.93 0 0 1-2.828.775A4.932 4.932 0 0 0 23.337 3.1a9.865 9.865 0 0 1-3.127 1.195 4.924 4.924 0 0 0-8.384 4.485A13.975 13.975 0 0 1 1.671 3.149a4.922 4.922 0 0 0-.667 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.229-.616v.061c0 2.386 1.697 4.374 3.946 4.827a4.922 4.922 0 0 1-2.224.084 4.927 4.927 0 0 0 4.6 3.416 9.868 9.868 0 0 1-6.1 2.105c-.396 0-.787-.023-1.17-.068a13.944 13.944 0 0 0 7.557 2.213c9.054 0 14.002-7.496 14.002-13.985 0-.21 0-.423-.015-.634A9.993 9.993 0 0 0 24 4.557z" />
                   </svg>
 
-                  <span className="mx-2">Sign Up with Facebook</span>
+                  <span className="mx-2">Sign Up with Twitter</span>
                 </button>
 
                 <div className="my-6 text-center ">
