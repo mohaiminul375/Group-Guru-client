@@ -193,7 +193,7 @@ const Navbar = () => {
               to="/Register"
               // className="btn bg-white rounded-full ml-2 md:ml-5 text-xs"
               className={({ isActive }) =>
-              isActive ? "border-2 text-black btn bg-white rounded-full ml-2 md:ml-5 text-base" : "btn bg-white rounded-full ml-2 md:ml-5 text-xs"
+              isActive ? "border-2 text-black btn bg-white rounded-full ml-2 md:ml-5 text-base" : "btn bg-white rounded-full ml-2 md:ml-5 text-xs text-black"
             }
             >
               Register

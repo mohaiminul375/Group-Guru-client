@@ -13,6 +13,7 @@ import PendingAssignment from "../components/Pages/PendingAssignment/PendingAssi
 import UpdateAssignment from "../components/Pages/UpdateAssignment/UpdateAssignment";
 import axios from "axios";
 import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
+import UpdateProfile from "../components/Pages/UpdateProfile/UpdateProfile";
 
 export const router= createBrowserRouter(
     [{
@@ -57,6 +58,10 @@ export const router= createBrowserRouter(
         path:'/update-assignment/:id',
         element:<PrivateRouter><UpdateAssignment></UpdateAssignment></PrivateRouter>,
         loader:({params})=>axios.get(`https://gorup-guru-server.vercel.app/all-assignment/${params.id}`,{withCredentials:true})
+    },
+    {
+        path:'/update-profile',
+        element:<PrivateRouter><UpdateProfile></UpdateProfile></PrivateRouter>
     }
 
 ]
