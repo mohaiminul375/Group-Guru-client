@@ -84,12 +84,12 @@ const AssignmentEvaluation = ({ assignment }) => {
               </span>
             </Link>
           </p>
-          <p className="font-bold text-[#024950] text-lg">Submission Note</p>
+          <p className="font-bold text-[#024950] text-lg   ">Submission Note</p>
           <p className="text-black text-base">{quick_note}</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2">
-          <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row gap-3">
             <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="font-bold text-[#024950]">Obtain Marks</span>
@@ -125,7 +125,7 @@ const AssignmentEvaluation = ({ assignment }) => {
           </div>
         </form>
       </div>
-      <h2 className="text-center text-2xl font-bold">Your Submission</h2>
+      <h2 className="text-center text-2xl font-bold mt-5 text-[#024950]">Pdf/Doc Preview</h2>
       <div className="mt-5">
         <iframe
           height="300px"

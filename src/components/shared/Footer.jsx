@@ -51,8 +51,26 @@ const Footer = () => {
                 <div>
                   <h3 className=" uppercase text-lg font-bold">Our APPs</h3>
                   <div className="space-y-3">
-                    <img className="w-40" src={playStore} alt="play-store" />
-                    <img className="w-40" src={appStore} alt="app-store" />
+                    <div>
+                      <Link to="https://play.google.com" target="_blank">
+                        {" "}
+                        <img
+                          className="w-40"
+                          src={playStore}
+                          alt="play-store"
+                        />
+                      </Link>
+                    </div>
+                    <div>
+                      <Link
+                        className=""
+                        to="https://www.apple.com/app-store"
+                        target="_blank"
+                      >
+                        {" "}
+                        <img className="w-40" src={appStore} alt="app-store" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
@@ -60,15 +78,23 @@ const Footer = () => {
                   <h3 className=" uppercase text-lg font-bold">Newsletter</h3>
                   {/* input */}
                   <div className="relative mt-5">
-                  <input className="bg-gray-900 w-3/4 h-10 rounded-l-md input-bordered pl-2" type="email" name="" id="" placeholder="input your email" />
-                  <button className="absolute border rounded-r-md h-10 p-2 bg-white text-[#024950] font-bold">Subscribe</button>
+                    <input
+                      className="bg-gray-900 w-3/4 h-10 rounded-l-md input-bordered pl-2"
+                      type="email"
+                      name=""
+                      id=""
+                      placeholder="input your email"
+                    />
+                    <button className="absolute border rounded-r-md h-10 p-2 bg-white text-[#024950] font-bold">
+                      Subscribe
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <hr className="h-px my-6 bg-gray-200 border-none "/>
+          <hr className="h-px my-6 bg-gray-200 border-none " />
 
           <div>
             <p className="text-center">

@@ -8,7 +8,7 @@ const FAQ = () => {
           Frequently Ask Question
         </h2>
       </div>
-      <div className="mt-16 flex md:flex-row justify-evenly items-center">
+      <div className="mt-16 flex flex-col md:flex-row justify-evenly items-center">
         <div className="md:w-1/2">
           <img className="md:w-3/4 rounded-md" src={faq} alt="" />
         </div>

@@ -72,6 +72,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error?.message);
+        setError(error?.message)
       });
   };
 
@@ -184,7 +185,7 @@ const Login = () => {
 
               <div className="mt-6">
                 <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#024950] rounded-lg hover:bg-[#024a50c5] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  <Link>Login</Link>
+                Login
                 </button>
 
                 <p className="mt-4 text-center text-gray-600 dark:text-gray-400">

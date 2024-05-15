@@ -29,26 +29,30 @@ const Navbar = () => {
       >
         Assignment
       </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "border-b-2 border-black font-bold text-base"
-            : "p-2 rounded-md text-base"
-        }
-        to="/create-assignment"
-      >
-        Create Assignments
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "border-b-2 border-black font-bold text-base"
-            : "p-2 rounded-md text-base"
-        }
-        to="/pending-assignment"
-      >
-        Pending Assignments
-      </NavLink>
+      {user && (
+        <>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "border-b-2 border-black font-bold text-base"
+                : "p-2 rounded-md text-base"
+            }
+            to="/create-assignment"
+          >
+            Create Assignments
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "border-b-2 border-black font-bold text-base"
+                : "p-2 rounded-md text-base"
+            }
+            to="/pending-assignment"
+          >
+            Pending Assignments
+          </NavLink>
+        </>
+      )}
     </>
   );
   // theme func
@@ -92,12 +96,14 @@ const Navbar = () => {
             {navlinks}
           </ul>
         </div>
-        <div className="flex  items-center gap-3">
+        <Link to='/'>
+        <div className="flex items-center gap-3">
           <img src={logo} className="w-10 md:w-20" alt="logo" />
-          <h2 className="text-4xl font-Jaini font-bold">
+          <h2 className="text-xl md:text-4xl font-Jaini font-bold">
             G<span className="text-xs font-Zilla-Slab">roup Guru</span>
           </h2>
         </div>
+        </Link>
       </div>
       <div>
         <div className="navbar-center hidden lg:flex">
@@ -174,28 +180,25 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  isActive
-                    ? "border-b-2 border-white font-bold text-xl mr-2"
-                    : "p-2 rounded-md text-xl mr-2"
-                }
-              >
-                Login
-              </NavLink>
-              <NavLink
-                to="/register"
-                className={({ isActive }) =>
-                  isActive
-                    ? "btn rounded-full border-black font-bold text-base mr-2"
-                    : "btn rounded-full text-base mr-2"
-                }
-              >
-                SignUp
-              </NavLink>
-            </>
+            <div className="flex items-center">
+               <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? "border-b-2 border-black font-bold text-base" : ""
+              }
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/Register"
+              // className="btn bg-white rounded-full ml-2 md:ml-5 text-xs"
+              className={({ isActive }) =>
+              isActive ? "border-2 text-black btn bg-white rounded-full ml-2 md:ml-5 text-base" : "btn bg-white rounded-full ml-2 md:ml-5 text-xs"
+            }
+            >
+              Register
+            </NavLink>
+            </div>
           )}
         </div>
       </div>

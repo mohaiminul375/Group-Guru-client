@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const Register = () => {
-  const { createUser, updateUserProfile, setUser, googleLogin } =
+  const { createUser, updateUserProfile, setUser, googleLogin,facebookLogin } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -97,6 +97,34 @@ const Register = () => {
         setError(error?.message);
       });
   };
+
+
+// facebook login
+const handleFacebookLogin = () => {
+  facebookLogin()
+    .then((result) => {
+      console.log(result.user);
+      axios
+        .post(
+          "https://gorup-guru-server.vercel.app/jwt",
+          { email: result?.user?.email },
+          { withCredentials: true }
+        )
+        .then((data) => {
+          console.log("jwt", data.data);
+        });
+      toast.success("login successfully");
+      setTimeout(() => {
+        navigate(from);
+      }, 1000);
+    })
+    .catch((error) => {
+      console.log(error?.message);
+      setError(error?.message)
+    });
+};
+
+
 
   const handleRemoveError = () => {
     setError("");
@@ -238,7 +266,7 @@ const Register = () => {
 
               <div className="mt-6">
                 <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#024950] rounded-lg hover:bg-[#024a50c5] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  <Link>Sign Up</Link>
+              Sign Up
                 </button>
 
                 <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
@@ -271,7 +299,9 @@ const Register = () => {
 
                   <span className="mx-2">Sign Up with Google</span>
                 </button>
-                <button className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full">
+                <button
+                onClick={handleFacebookLogin}
+                className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg bg-[#024950] w-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 48 48"
