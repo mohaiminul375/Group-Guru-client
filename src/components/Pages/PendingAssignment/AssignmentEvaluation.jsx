@@ -79,13 +79,13 @@ const AssignmentEvaluation = ({ assignment }) => {
           <p className="font-bold text-[#024950] text-lg">
             Submission Link:{" "}
             <Link to={`${assignment_submission}`} target="_blank">
-              <span className="text-black underline text-base">
+              <span className="text-base-content underline text-base">
                 {assignment_submission}
               </span>
             </Link>
           </p>
           <p className="font-bold text-[#024950] text-lg   ">Submission Note</p>
-          <p className="text-black text-base">{quick_note}</p>
+          <p className="text-base-content text-base">{quick_note}</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/2">

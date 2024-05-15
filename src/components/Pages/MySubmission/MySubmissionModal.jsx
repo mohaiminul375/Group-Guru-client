@@ -37,9 +37,9 @@ const MySubmissionModal = ({ submission }) => {
       <h2 className="text-center text-2xl font-bold mt-5">Your Submission</h2>
       <div className="mt-5 text-left">
         <div className='my-5'>
-          <h2 className='font-bold text-[#024950] text-lg'>My Submission Link:<span className='text-black'> {assignment_submission}</span></h2>
+          <h2 className='font-bold text-[#024950] text-lg'>My Submission Link:<span className='text-base-content'> <span className='text-base-content'>{assignment_submission}</span></span></h2>
           <p className="font-bold text-[#024950] text-lg">Submission Note:</p>
-          <p className="text-black text-base">{quick_note}</p>
+          <p className="text-base-content text-base"><span className='text-base-content'>{quick_note}</span></p>
         </div>
         <h2 className="text-center text-2xl font-bold mt-5 text-[#024950]">Pdf/Doc Preview</h2>
         <iframe
