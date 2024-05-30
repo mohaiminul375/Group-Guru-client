@@ -18,7 +18,8 @@ this is a Online education Online-group-study assignment website
 - User can see her submit and assignment status and marks
 - User can can see all pending assignment and give marks assignment excluding submitted by own
 
-
+# new features
+- Create Leader Board where will show users' average marks data in descending order, excluding marks marked as pending. Data formatting in Database.
 # npm and package
 
 - vite

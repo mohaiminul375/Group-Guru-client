@@ -14,6 +14,7 @@ import UpdateAssignment from "../components/Pages/UpdateAssignment/UpdateAssignm
 import axios from "axios";
 import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
 import UpdateProfile from "../components/Pages/UpdateProfile/UpdateProfile";
+import LeaderBoard from "../components/Pages/LeaderBoard/LeaderBoard";
 
 export const router= createBrowserRouter(
     [{
@@ -62,7 +63,11 @@ export const router= createBrowserRouter(
     {
         path:'/update-profile',
         element:<PrivateRouter><UpdateProfile></UpdateProfile></PrivateRouter>
-    }
+    },
+    {
+        path:'/leaderBoard',
+        element:<PrivateRouter><LeaderBoard></LeaderBoard></PrivateRouter>
+    },
 
 ]
 }])

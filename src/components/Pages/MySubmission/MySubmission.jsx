@@ -26,7 +26,7 @@ const MySubmission = () => {
       </div>
     );
   }
-
+// console.log()
   return (
     <div className="mt-16 md:max-w-6xl mx-auto">
        <Helmet>
@@ -44,6 +44,7 @@ const MySubmission = () => {
       )}
       <div className="mt-16">
         <div className="overflow-x-auto">
+          {/* <p className="mb-3 bg-[#024950]  p-3 text-white rounded-full">Average Marks:[]</p> */}
           <table className="table border-2 border-[#024950] text-center">
             {/* head */}
             <thead className="border-2 border-[#024950]">

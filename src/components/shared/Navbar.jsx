@@ -51,6 +51,16 @@ const Navbar = () => {
           >
             Pending Assignments
           </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "border-b-2 border-black font-bold text-base flex items-center"
+                : "p-2 rounded-md text-base flex items-center"
+            }
+            to="/leaderBoard"
+          >
+           LeaderBoard<small className="ml-2 px-2 bg-white text-black rounded-full">new</small>
+          </NavLink>
         </>
       )}
     </>
