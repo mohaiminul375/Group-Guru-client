@@ -6,19 +6,6 @@
 
 # assignment_category_0001: Online Group-Study assignment
 # Run the Project Locally
-Clone the Repository:
-
-git clone https://github.com/mohaiminul375/Group-Guru-client.git
-cd Group-Guru-client
-Install Dependencies:
-
-npm install
-Set Up Environment Variables: Create a .env.local file in the root directory and add the necessary environment variables. (Important!)
-
-Run the Application:
-
-npm run dev -- --host
-Access the Site: Open your browser and go to http://localhost:5173/ or http://192.168.1.12:5173/ from other devices on the same network to view the application.
 
 
 # website features
